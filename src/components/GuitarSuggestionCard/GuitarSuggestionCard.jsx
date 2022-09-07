@@ -1,9 +1,13 @@
 import "./GuitarSuggestionCard.scss"
 
 const GuitarSuggestionCard = ({guitarPicUrl, guitarName, guitarPrice, guitarDescription}) => {
-if(guitarDescription.length > 30) {
-  guitarDescription = guitarDescription.slice(0, 40)
-}
+  guitarDescription = guitarDescription.replace(
+    "Full Description View Full Description ", ""
+  ).substring(0,100) + "...";
+
+  if(guitarDescription[-1] === " ") {
+    guitarDescription[-1] = ""
+  } 
 
   return (
     <div className="guitar-suggestion-card">

@@ -1,8 +1,12 @@
 .guitar-suggestion-card{
-    width: 8rem;
-    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 16rem;
+    height: auto;
+    margin: 0.5rem;
 
     .guitar-suggestion-card__image{
-        width: 8rem;
+        width: 10rem;
     }
 }

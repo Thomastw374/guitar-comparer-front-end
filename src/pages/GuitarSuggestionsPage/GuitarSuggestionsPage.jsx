@@ -3,14 +3,14 @@ import Nav from "../../components/Nav/Nav"
 import SearchContainer from "../../components/SearchContainer/SearchContainer"
 import "./GuitarSuggestionsPage.scss"
 
-const GuitarSuggestionsPage = () => {
+const GuitarSuggestionsPage = ({guitars}) => {
 
-    
+
     return(
         <div className="guitar-suggestions-page">
             <Nav/>
             <SearchContainer/>
-            <GuitarSuggestionsContainer/>
+            <GuitarSuggestionsContainer guitars={guitars}/>
         </div>
     )
 }
