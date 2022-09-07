@@ -3,16 +3,18 @@ import Nav from "../../components/Nav/Nav"
 import SearchContainer from "../../components/SearchContainer/SearchContainer"
 import "./GuitarSuggestionsPage.scss"
 
-const GuitarSuggestionsPage = ({guitars}) => {
+const GuitarSuggestionsPage = ({guitars, handleInput}) => {
 
 
-    return(
-        <div className="guitar-suggestions-page">
-            <Nav/>
-            <SearchContainer/>
-            <GuitarSuggestionsContainer guitars={guitars}/>
-        </div>
-    )
+    return (
+      <div className="guitar-suggestions-page">
+        <Nav />
+        <SearchContainer
+          handleInput={handleInput}
+        />
+        <GuitarSuggestionsContainer guitars={guitars} />
+      </div>
+    );
 }
 
 export default GuitarSuggestionsPage
