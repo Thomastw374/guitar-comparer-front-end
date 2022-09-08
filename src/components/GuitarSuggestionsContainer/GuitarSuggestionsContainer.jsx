@@ -18,7 +18,12 @@ const GuitarSuggestionsContainer = ({guitars}) => {
       );
     })
 
-    return <div className="guitar-suggestions-container">{guitarCardsArr}</div>;
+    return (
+      <div>
+        <h2 className="guitar-suggestions-title">Displaying all electric guitars</h2>
+        <div className="guitar-suggestions-container">{guitarCardsArr}</div>
+      </div>
+    );
 }
 
 export default GuitarSuggestionsContainer;

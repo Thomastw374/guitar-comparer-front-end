@@ -4,9 +4,20 @@
     align-items: center;
     width: 16rem;
     height: auto;
-    margin: 0.5rem;
+    padding: 0.5rem;
+    margin:0.2rem;
+    border: 1px black solid;
+    box-shadow: 1px, 1px, 1px, 1px;
 
     .guitar-suggestion-card__image{
         width: 10rem;
     }
+}
+
+.guitar-suggestion-card:hover{
+    background-color: rgb(53, 53, 117);
+}
+
+.guitar-suggestion-card__image{
+        background-color: gray;
 }

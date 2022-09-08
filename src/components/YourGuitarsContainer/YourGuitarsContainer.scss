@@ -1,0 +1,12 @@
+.your-guitars-section__container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-inline: 1rem;
+    width: 87vw;
+}
+
+.your-guitars-section__title{
+    text-align: left;
+}

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import './App.css';
 import GuitarAddingPage from "./pages/GuitarAddingPage/GuitarAddingPage";
 import GuitarSuggestionsPage from "./pages/GuitarSuggestionsPage/GuitarSuggestionsPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
@@ -8,10 +7,10 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 function App() {
   const [guitars, setGuitars]= useState([])
   const [searchTerm, setSearchTerm] = useState("")
-  const [guitarDescription, setGuitarDescription] = useState("")
-  const [guitarName, setGuitarName] = useState("");
-  const [guitarImageUrl, setGuitarImageUrl] = useState("");
-  const [guitarPrice, setGuitarPrice] = useState("");
+  // const [guitarDescription, setGuitarDescription] = useState("")
+  // const [guitarName, setGuitarName] = useState("");
+  // const [guitarImageUrl, setGuitarImageUrl] = useState("");
+  // const [guitarPrice, setGuitarPrice] = useState("");
 
   const handleInput = (event) => {
     setSearchTerm(event.target.value.toLowerCase());

@@ -3,8 +3,11 @@ import "./SearchContainer.scss";
 const SearchContainer = ({handleInput}) => {
     return (
       <div className="search-container">
-        <input type="search" name="" id="" onInput={handleInput}/>
-        <button>Let's Go!</button>
+        <span className="search-container__search">
+          <label htmlFor="">Search by name: </label>
+          <input type="search" name="" id="" onInput={handleInput}/>
+        </span>
+        <button className="search-container__compare-button">Compare Guitars</button>
       </div>
     );
 }
