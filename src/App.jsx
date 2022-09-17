@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GuitarSuggestionsPage from "./pages/GuitarSuggestionsPage/GuitarSuggestionsPage";
-import LandingPage from "./pages/LandingPage/LandingPage";
 
 function App() {
   const [guitars, setGuitars]= useState([])
@@ -12,7 +11,7 @@ function App() {
   const [newGuitarName, setNewGuitarName] = useState("");
   const [newGuitarImageUrl, setNewGuitarImageUrl] = useState("");
   const [newGuitarPrice, setNewGuitarPrice] = useState("");
- 
+
   const handleNewGuitarName = (e) => {
     setNewGuitarName(e.target.value)
   } 
@@ -50,13 +49,7 @@ function App() {
   const getUserGuitars = async (e) => {
     console.log("activated")
     e.preventDefault();
-      const response = await fetch(
-        `http://localhost:9090/user-guitars/${currentUserKey}`,
-        {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const response = await fetch(`http://localhost:9090/user-guitars/${currentUserKey}`);
       const yourGuitars = await response.json();
       setUserGuitars(yourGuitars);
   };
@@ -98,9 +91,9 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/comparison-page" />
           <Route
-            path="/search"
+            path="/"
             element={
               <GuitarSuggestionsPage
                 newGuitarName={handleNewGuitarName}

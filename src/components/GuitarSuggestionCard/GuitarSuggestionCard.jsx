@@ -14,9 +14,8 @@ const handleDeletePress = async () => {
       {
         method: "DELETE",
       }
-    );
+    ).then(getUserGuitars());
     console.log("delete activated");
-    return({getUserGuitars})
 };
 
 const handleEditPress = () => {
