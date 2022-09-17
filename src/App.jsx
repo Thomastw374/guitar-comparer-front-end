@@ -1,6 +1,7 @@
 import { useEffect, useState, createContext, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserGuitarsContext from "./Context/UserGuitarsContext";
+import GuitarComparisonPage from "./pages/GuitarComparisonPage/GuitarComparisonPage";
 import GuitarSuggestionsPage from "./pages/GuitarSuggestionsPage/GuitarSuggestionsPage";
 
 function App() {
@@ -42,10 +43,14 @@ function App() {
         userKey: currentUserKey,
       }),
     });
+    const responseTwo = await fetch(
+      `http://localhost:9090/user-guitars/${currentUserKey}`
+    );
+    const yourGuitars = await responseTwo.json();
+    setUserGuitars(yourGuitars);
 
     console.log("activated");
   };
-  
 
   const getUserGuitars = async (e) => {
     console.log("activated")
@@ -83,7 +88,20 @@ function App() {
    getGuitars();
   }, []);
 
-
+  const guitarPair = [
+    [
+      "Guitar Pic Url 1",
+      "Guitar Name 1",
+      "Guitar Price 1",
+      "Guitar Description 1",
+    ],
+    [
+      "Guitar Pic Url 2",
+      "Guitar Name 2",
+      "Guitar Price 2",
+      "Guitar Description 2",
+    ],
+  ];
   
 
 
@@ -92,7 +110,10 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/comparison-page" />
+          <Route
+            path="/comparison-page"
+            element={<GuitarComparisonPage guitarPair={guitarPair} />}
+          />
           <Route
             path="/"
             element={
