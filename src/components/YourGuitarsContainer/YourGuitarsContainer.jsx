@@ -3,7 +3,7 @@ import "./YourGuitarsContainer.scss";
 
 // c2Nsbd8GoJey3EcHtWldmc5wAAcFDOYXy
 
-const YourGuitarsContainer = ({getUserGuitars, setUserKey}) => {
+const YourGuitarsContainer = ({getUserGuitars, userKey}) => {
   
     return (
       <>
@@ -12,7 +12,7 @@ const YourGuitarsContainer = ({getUserGuitars, setUserKey}) => {
           <h2 className="your-guitars-section__title">Your Guitars</h2>
           <form className="your-guitars-section__user-key-form" onSubmit={getUserGuitars}>
             <label htmlFor="userKey">User Key: </label>
-            <input className="your-guitars-section__user-key-input" onChange={setUserKey}/>
+            <input className="your-guitars-section__user-key-input" onChange={userKey}/>
             <button type="submit">Go</button>
           </form>
           <div className="your-guitars-section__container">

@@ -8,6 +8,7 @@ function App() {
   const [guitars, setGuitars]= useState([])
   const [searchTerm, setSearchTerm] = useState("")
   const [userKey, setUserKey] = useState("");
+  const [userGuitars, setUserGuitars] = useState([])
   // const [guitarDescription, setGuitarDescription] = useState("")
   // const [guitarName, setGuitarName] = useState("");
   // const [guitarImageUrl, setGuitarImageUrl] = useState("");
@@ -17,7 +18,6 @@ function App() {
 
   const getUserGuitars = async (e) => {
     e.preventDefault();
-    try {
       const response = await fetch(
         `http://localhost:9090/user-guitars/${userKey}`,
         {
@@ -26,17 +26,18 @@ function App() {
         }
       );
       const yourGuitars = await response.json();
-      console.log(yourGuitars);
-    } catch (e) {
-      console.log("Something went wrong");
-      console.log(e);
-    }
+      setUserGuitars(yourGuitars);
+      console.log(yourGuitars)
   };
 
   const handleInput = (event) => {
     setSearchTerm(event.target.value.toLowerCase());
     console.log(searchTerm);
   };
+
+  const handleUserKey = (e) => {
+    setUserKey(e.target.value)
+  }
 
   useEffect(() => {
    getGuitars();
@@ -56,10 +57,6 @@ function App() {
 
     return guitarNameLower.includes(searchTerm);
   });
-
-  const submitGuitar = async => {
-
-  }
   
 
 
@@ -69,13 +66,15 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/addguitars" element={<GuitarAddingPage submitGuitar={submitGuitar}/>} />
+          <Route path="/addguitars" element={<GuitarAddingPage/>} />
           <Route
             path="/search"
             element={
               <GuitarSuggestionsPage
                 guitars={filteredGuitars}
                 handleInput={handleInput}
+                getUserGuitars={getUserGuitars}
+                userKey={handleUserKey}
               />
             }
           />
