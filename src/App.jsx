@@ -1,12 +1,13 @@
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UserGuitarsContext from "./Context/UserGuitarsContext";
 import GuitarSuggestionsPage from "./pages/GuitarSuggestionsPage/GuitarSuggestionsPage";
 
 function App() {
   const [guitars, setGuitars]= useState([])
   const [searchTerm, setSearchTerm] = useState("")
   const [currentUserKey, setUserKey] = useState("");
-  const [userGuitars, setUserGuitars] = useState([])
+  const {userGuitars, setUserGuitars} = useContext(UserGuitarsContext)
   const [newGuitarDescription, setNewGuitarDescription] = useState("")
   const [newGuitarName, setNewGuitarName] = useState("");
   const [newGuitarImageUrl, setNewGuitarImageUrl] = useState("");

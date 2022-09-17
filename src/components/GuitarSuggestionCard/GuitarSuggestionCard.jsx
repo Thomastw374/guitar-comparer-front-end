@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import UserGuitarsContext from "../../Context/UserGuitarsContext";
 import "./GuitarSuggestionCard.scss"
 
@@ -8,8 +8,7 @@ const [editedGuitarPrice, setEditedGuitarPrice] = useState("");
 const [editedGuitarUrl, setEditedGuitarUrl] = useState("");
 const [editedGuitarDescription, setEditedGuitarDescription] = useState("");
 const [editPressed, setEditPressed] = useState(false);
-
- const {setUserGuitars}= createContext(UserGuitarsContext)
+const { userGuitars, setUserGuitars } = useContext(UserGuitarsContext);
 
 const handleDeletePress = async () => {
     const response = await fetch(
@@ -38,9 +37,13 @@ const editUserGuitar = async (e) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ guitarName: editedGuitarName, guitarPrice: editedGuitarPrice, guitarPicUrl: editedGuitarUrl, guitarDescription: editedGuitarDescription, userKey: currentUserKey}),
       });
+  const responseTwo = await fetch(
+    `http://localhost:9090/user-guitars/${currentUserKey}`
+  );
+  const yourGuitars = await responseTwo.json();
+  setUserGuitars(yourGuitars);
       console.log("edit activated")
       setEditPressed(!editPressed)
-      return { getUserGuitars };
 }
 
 
