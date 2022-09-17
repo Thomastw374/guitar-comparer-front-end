@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
+import UserGuitarsContext from "../../Context/UserGuitarsContext";
 import "./GuitarSuggestionCard.scss"
 
 const GuitarSuggestionCard = ({guitarPicUrl, guitarName, guitarPrice, guitarDescription, isUserCard, guitarId, currentUserKey, getUserGuitars}) => {
@@ -8,13 +9,20 @@ const [editedGuitarUrl, setEditedGuitarUrl] = useState("");
 const [editedGuitarDescription, setEditedGuitarDescription] = useState("");
 const [editPressed, setEditPressed] = useState(false);
 
+ const {setUserGuitars}= createContext(UserGuitarsContext)
+
 const handleDeletePress = async () => {
     const response = await fetch(
       `http://localhost:9090/user-guitar/${guitarId}`,
       {
         method: "DELETE",
       }
-    ).then(getUserGuitars());
+    );
+    const responseTwo = await fetch(
+      `http://localhost:9090/user-guitars/${currentUserKey}`
+    );
+    const yourGuitars = await responseTwo.json();
+    setUserGuitars(yourGuitars);
     console.log("delete activated");
 };
 
