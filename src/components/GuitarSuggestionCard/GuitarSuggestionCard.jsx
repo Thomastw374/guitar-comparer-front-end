@@ -13,15 +13,15 @@ const GuitarSuggestionCard = ({guitarPicUrl, guitarName, guitarPrice, guitarDesc
     }
 
     return (
-      <div className="guitar-suggestion-card">
+      <div className="guitar-card">
         <img
-          className="guitar-suggestion-card__image"
+          className="guitar-card__image"
           src={guitarPicUrl}
           alt=""
         />
-        <h4 className="guitar-suggestion-card__name">{guitarName}</h4>
-        <h5 className="guitar-suggestion-card__price">{guitarPrice}</h5>
-        <p className="guitar-suggestion-card__description">
+        <h4 className="guitar-card__name">{guitarName}</h4>
+        <h5 className="guitar-card__price">{guitarPrice}</h5>
+        <p className="guitar-card__description">
           {guitarDescription}
         </p>
       </div>
@@ -30,16 +30,27 @@ const GuitarSuggestionCard = ({guitarPicUrl, guitarName, guitarPrice, guitarDesc
 
   else{
     return (
-      <div className="guitar-suggestion-card guitar-suggestion-card--form">
+      <div className="guitar-upload">
         <form action="">
-          <label htmlFor="">Guitar picture url (optional):</label>
-          <input type="text" name="" id="" />
-          <label htmlFor="">Guitar name:</label>
-          <input type="text" name="" id="" />
-          <label htmlFor="">Guitar price:</label>
-          <input type="text" name="" id="" />
-          <label htmlFor="">Guitar description:</label>
-          <input type="text" name="" id="" />
+          <div className="">
+            <label htmlFor="">Guitar picture url (optional):</label>
+            <input type="text" name="" id="" />
+          </div>
+          <div className="">
+            <label htmlFor="">Guitar name:</label>
+            <input type="text" name="" id="" />
+          </div>
+          <div className="">
+            <label htmlFor="">Guitar price:</label>
+            <input type="text" name="" id="" />
+          </div>
+          <div className="">
+            <label htmlFor="">Guitar description:</label>
+            <input type="text" name="" id="" />
+          </div>
+          <button className="guitar-upload__button">
+            Upload guitar
+          </button>
         </form>
       </div>
     );

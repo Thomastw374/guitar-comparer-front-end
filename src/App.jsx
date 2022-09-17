@@ -7,10 +7,31 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 function App() {
   const [guitars, setGuitars]= useState([])
   const [searchTerm, setSearchTerm] = useState("")
+  const [userKey, setUserKey] = useState("");
   // const [guitarDescription, setGuitarDescription] = useState("")
   // const [guitarName, setGuitarName] = useState("");
   // const [guitarImageUrl, setGuitarImageUrl] = useState("");
   // const [guitarPrice, setGuitarPrice] = useState("");
+
+  
+
+  const getUserGuitars = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `http://localhost:9090/user-guitars/${userKey}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      const yourGuitars = await response.json();
+      console.log(yourGuitars);
+    } catch (e) {
+      console.log("Something went wrong");
+      console.log(e);
+    }
+  };
 
   const handleInput = (event) => {
     setSearchTerm(event.target.value.toLowerCase());

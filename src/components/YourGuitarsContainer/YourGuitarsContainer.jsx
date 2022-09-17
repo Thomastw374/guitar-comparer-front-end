@@ -1,12 +1,20 @@
 import GuitarSuggestionCard from "../GuitarSuggestionCard/GuitarSuggestionCard";
 import "./YourGuitarsContainer.scss";
 
-const YourGuitarsContainer = ({ }) => {
+// c2Nsbd8GoJey3EcHtWldmc5wAAcFDOYXy
 
+const YourGuitarsContainer = ({getUserGuitars, setUserKey}) => {
+  
     return (
       <>
         <div className="your-guitars-section">
+          <p>The 'Your guitars' section is where your use submitted guitars appear. To retrieve a previously created guitar list enter the 32 character user key you were given upon submission of your first guitar. To start a guitar list simply upload your first guitar using the form below.</p>
           <h2 className="your-guitars-section__title">Your Guitars</h2>
+          <form className="your-guitars-section__user-key-form" onSubmit={getUserGuitars}>
+            <label htmlFor="userKey">User Key: </label>
+            <input className="your-guitars-section__user-key-input" onChange={setUserKey}/>
+            <button type="submit">Go</button>
+          </form>
           <div className="your-guitars-section__container">
             <GuitarSuggestionCard
               guitarName={"Ibanez RGA8"}
