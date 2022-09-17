@@ -1,6 +1,28 @@
+import { useState } from "react";
 import "./GuitarSuggestionCard.scss"
 
-const GuitarSuggestionCard = ({guitarPicUrl, guitarName, guitarPrice, guitarDescription, isUserCard, handleEditPress, handleDeletePress, editPressed, editedGuitarName, editedGuitarPrice, editedGuitarUrl, editedGuitarDescription, guitarId, currentUserKey}) => {
+const GuitarSuggestionCard = ({guitarPicUrl, guitarName, guitarPrice, guitarDescription, isUserCard, guitarId, currentUserKey, getUserGuitars}) => {
+const [editedGuitarName, setEditedGuitarName] = useState("")
+const [editedGuitarPrice, setEditedGuitarPrice] = useState("");
+const [editedGuitarUrl, setEditedGuitarUrl] = useState("");
+const [editedGuitarDescription, setEditedGuitarDescription] = useState("");
+const [editPressed, setEditPressed] = useState(false);
+
+const handleDeletePress = async () => {
+    const response = await fetch(
+      `http://localhost:9090/user-guitar/${guitarId}`,
+      {
+        method: "DELETE",
+      }
+    );
+    console.log("delete activated");
+    return({getUserGuitars})
+};
+
+const handleEditPress = () => {
+  setEditPressed(!editPressed);
+  console.log(editPressed);
+};
 
 const editUserGuitar = async (e) => {
   e.preventDefault();
@@ -10,7 +32,8 @@ const editUserGuitar = async (e) => {
         body: JSON.stringify({ guitarName: editedGuitarName, guitarPrice: editedGuitarPrice, guitarPicUrl: editedGuitarUrl, guitarDescription: editedGuitarDescription, userKey: currentUserKey}),
       });
       console.log("edit activated")
-
+      setEditPressed(!editPressed)
+      return { getUserGuitars };
 }
 
 
@@ -43,8 +66,7 @@ if(isUserCard === false){
         .replace("Full Description View Full Description ", "")
         .substring(0, 100) + "...";
 
-    
-    console.log("triggered")
+  
     return (
       <>
         {!editPressed ? (
@@ -52,40 +74,60 @@ if(isUserCard === false){
             <img className="guitar-card__image" src={guitarPicUrl} alt="" />
             <h4 className="guitar-card__name">{guitarName}</h4>
             <h5 className="guitar-card__price">{guitarPrice}</h5>
-            <p className="guitar-card__description">{truncatedGuitarDescription}</p>
+            <p className="guitar-card__description">
+              {truncatedGuitarDescription}
+            </p>
             <div className="guitar-card__buttons">
               <button onClick={handleEditPress}>Edit</button>
               <button onClick={handleDeletePress}>Delete</button>
             </div>
           </div>
         ) : (
-      <div className="guitar-upload">
+          <div className="guitar-upload">
             <form action="" onSubmit={editUserGuitar}>
-          <div className="">
-            <label htmlFor="">Guitar picture url (optional):</label>
-                <input type="text" name="" id="" onChange={editedGuitarUrl} defaultValue={guitarPicUrl} />
-          </div>
-          <div className="">
-            <label htmlFor="">Guitar name:</label>
-                <input type="text" name="" id="" onChange={editedGuitarName} defaultValue={guitarName}/>
-          </div>
-          <div className="">
-            <label htmlFor="">Guitar price:</label>
-                <input type="text" name="" id="" onChange={editedGuitarPrice} defaultValue={guitarPrice} />
-          </div>
-          <div className="">
-            <label htmlFor="">Guitar description:</label>
+              <div className="">
+                <label htmlFor="">Guitar picture url (optional):</label>
                 <input
                   type="text"
                   name=""
                   id=""
-                  onChange={editedGuitarDescription}
+                  onChange={(e) => setEditedGuitarUrl(e.target.value)}
+                  defaultValue={guitarPicUrl}
+                />
+              </div>
+              <div className="">
+                <label htmlFor="">Guitar name:</label>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  onChange={(e) => setEditedGuitarName(e.target.value)}
+                  defaultValue={guitarName}
+                />
+              </div>
+              <div className="">
+                <label htmlFor="">Guitar price:</label>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  onChange={(e) => setEditedGuitarPrice(e.target.value)}
+                  defaultValue={guitarPrice}
+                />
+              </div>
+              <div className="">
+                <label htmlFor="">Guitar description:</label>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  onChange={(e) => setEditedGuitarDescription(e.target.value)}
                   defaultValue={guitarDescription}
                 />
-          </div>
+              </div>
               <button className="guitar-upload__button">Finish editing</button>
-        </form>
-      </div>
+            </form>
+          </div>
         )}
       </>
     );

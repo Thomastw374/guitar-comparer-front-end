@@ -12,17 +12,7 @@ function App() {
   const [newGuitarName, setNewGuitarName] = useState("");
   const [newGuitarImageUrl, setNewGuitarImageUrl] = useState("");
   const [newGuitarPrice, setNewGuitarPrice] = useState("");
-  const [editPressed, setEditPressed] = useState(false);
-
-  const handleDeletePress = () => {
-
-  }
-
-  const handleEditPress = () => {
-    setEditPressed(!editPressed)
-    console.log(editPressed)
-  }
-
+ 
   const handleNewGuitarName = (e) => {
     setNewGuitarName(e.target.value)
   } 
@@ -38,6 +28,23 @@ function App() {
   const handleNewGuitarPrice = (e) => {
     setNewGuitarPrice(e.target.value);
   };
+
+  const handleAddUserGuitar = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`http://localhost:9090/user-guitar`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        guitarName: newGuitarName,
+        guitarPrice: newGuitarPrice,
+        guitarPicUrl: newGuitarImageUrl,
+        guitarDescription: newGuitarDescription,
+        userKey: currentUserKey,
+      }),
+    });
+
+    console.log("activated");
+  };
   
 
   const getUserGuitars = async (e) => {
@@ -52,7 +59,6 @@ function App() {
       );
       const yourGuitars = await response.json();
       setUserGuitars(yourGuitars);
-      console.log(yourGuitars)
   };
 
   const getGuitars = async () => {
@@ -63,17 +69,6 @@ function App() {
     setGuitars(guitarData[0]);
     console.log(guitarData);
   };
-
-  const handleAddUserGuitar = async (e) => {
-      e.preventDefault();
-      const response = await fetch(`http://localhost:9090/user-guitar`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ guitarName: newGuitarName, guitarPrice: newGuitarPrice, guitarPicUrl: newGuitarImageUrl, guitarDescription: newGuitarDescription, userKey: currentUserKey}),
-      });
-
-      console.log("activated");
-  }
 
   const filteredGuitars = guitars.filter((guitar) => {
     let guitarNameLower = guitar.guitarName.toLowerCase();
@@ -118,9 +113,6 @@ function App() {
                 getUserGuitars={getUserGuitars}
                 userKey={handleUserKey}
                 userGuitars={userGuitars}
-                handleDeletePress={handleDeletePress}
-                handleEditPress={handleEditPress}
-                editPressed={editPressed}
                 currentUserKey={currentUserKey}
               />
             }

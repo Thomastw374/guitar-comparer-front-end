@@ -35,6 +35,7 @@ const YourGuitarsContainer = ({
             handleEditPress={handleEditPress}
             editPressed={editPressed}
             currentUserKey={currentUserKey}
+            getUserGuitars={getUserGuitars}
           />
         </>
       );
