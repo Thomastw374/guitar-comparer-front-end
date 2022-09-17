@@ -20,6 +20,7 @@ function App() {
 
   const handleEditPress = () => {
     setEditPressed(!editPressed)
+    console.log(editPressed)
   }
 
   const handleNewGuitarName = (e) => {

@@ -7,6 +7,7 @@ const GuitarSuggestionsContainer = ({guitars}) => {
       return (
         <>
           <GuitarSuggestionCard
+            isUserCard={false}
             guitarName={guitar.guitarName}
             guitarPicUrl={
               guitar.guitarPicUrl

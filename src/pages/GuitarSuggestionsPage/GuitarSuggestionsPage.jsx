@@ -4,19 +4,43 @@ import SearchContainer from "../../components/SearchContainer/SearchContainer"
 import YourGuitarsContainer from "../../components/YourGuitarsContainer/YourGuitarsContainer"
 import "./GuitarSuggestionsPage.scss"
 
-const GuitarSuggestionsPage = ({guitars, handleInput, getUserGuitars, userKey, userGuitars}) => {
-
-
+const GuitarSuggestionsPage = ({
+  guitars,
+  handleInput,
+  getUserGuitars,
+  userKey,
+  userGuitars,
+  addUserGuitar,
+  newGuitarName,
+  newGuitarDescription,
+  newGuitarPrice,
+  newGuitarUrl,
+  handleEditPress,
+  handleDeletePress,
+  editPressed,
+  currentUserKey
+}) => {
     return (
       <div className="guitar-suggestions-page">
         <Nav />
-        <SearchContainer
-          handleInput={handleInput}
+      <SearchContainer handleInput={handleInput} />
+      <YourGuitarsContainer
+        newGuitarName={newGuitarName}
+        addUserGuitar={addUserGuitar}
+        newGuitarDescription={newGuitarDescription}
+        newGuitarPrice={newGuitarPrice}
+        newGuitarUrl={newGuitarUrl}
+        getUserGuitars={getUserGuitars}
+        userKey={userKey}
+        userGuitars={userGuitars}
+        handleDeletePress={handleDeletePress}
+        handleEditPress={handleEditPress}
+        editPressed={editPressed}
+        currentUserKey={currentUserKey}
         />
-        <YourGuitarsContainer getUserGuitars={getUserGuitars} userKey={userKey} userGuitars={userGuitars}/>
         <GuitarSuggestionsContainer guitars={guitars} />
       </div>
     );
-}
+};
 
 export default GuitarSuggestionsPage
