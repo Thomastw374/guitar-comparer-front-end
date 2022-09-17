@@ -4,7 +4,7 @@ import SearchContainer from "../../components/SearchContainer/SearchContainer"
 import YourGuitarsContainer from "../../components/YourGuitarsContainer/YourGuitarsContainer"
 import "./GuitarSuggestionsPage.scss"
 
-const GuitarSuggestionsPage = ({guitars, handleInput, getUserGuitars, userKey}) => {
+const GuitarSuggestionsPage = ({guitars, handleInput, getUserGuitars, userKey, userGuitars}) => {
 
 
     return (
@@ -13,7 +13,7 @@ const GuitarSuggestionsPage = ({guitars, handleInput, getUserGuitars, userKey}) 
         <SearchContainer
           handleInput={handleInput}
         />
-        <YourGuitarsContainer getUserGuitars={getUserGuitars} userKey={userKey}/>
+        <YourGuitarsContainer getUserGuitars={getUserGuitars} userKey={userKey} userGuitars={userGuitars}/>
         <GuitarSuggestionsContainer guitars={guitars} />
       </div>
     );
