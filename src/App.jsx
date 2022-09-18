@@ -7,8 +7,13 @@ import GuitarSuggestionsPage from "./pages/GuitarSuggestionsPage/GuitarSuggestio
 function App() {
   const [guitars, setGuitars]= useState([])
   const [searchTerm, setSearchTerm] = useState("")
-  const [currentUserKey, setUserKey] = useState("");
-  const {userGuitars, setUserGuitars} = useContext(GuitarsContext)
+  const {
+    userGuitars,
+    setUserGuitars,
+    currentUserKey,
+    setUserKey,
+    setUserKeyRetrieved,
+  } = useContext(GuitarsContext);
   const [newGuitarDescription, setNewGuitarDescription] = useState("")
   const [newGuitarName, setNewGuitarName] = useState("");
   const [newGuitarImageUrl, setNewGuitarImageUrl] = useState("");
@@ -74,6 +79,8 @@ function App() {
     const newUserGuitars = await responseTwo.json();
     setUserGuitars(newUserGuitars);
     console.log(newUserGuitars);
+
+    setUserKeyRetrieved(true);
  
   }
 
@@ -82,6 +89,8 @@ function App() {
       const response = await fetch(`http://localhost:9090/user-guitars/${currentUserKey}`);
       const yourGuitars = await response.json();
       setUserGuitars(yourGuitars);
+      
+      setUserKeyRetrieved(true);
   };
 
   const getGuitars = async () => {

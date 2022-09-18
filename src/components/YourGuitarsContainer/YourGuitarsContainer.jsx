@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { useInRouterContext } from "react-router-dom";
+import GuitarsContext from "../../Context/GuitarsContext";
 import AddGuitarCard from "../AddGuitarCard/AddGuitarCard";
 import GuitarSuggestionCard from "../GuitarSuggestionCard/GuitarSuggestionCard";
 import "./YourGuitarsContainer.scss";
@@ -6,8 +9,8 @@ import "./YourGuitarsContainer.scss";
 
 const YourGuitarsContainer = ({
   getUserGuitars,
-  userKey,
   userGuitars,
+  userKey,
   addUserGuitar,
   newGuitarName,
   newGuitarDescription,
@@ -16,9 +19,9 @@ const YourGuitarsContainer = ({
   handleEditPress,
   handleDeletePress,
   editPressed,
-  currentUserKey,
   handleGuitarClick,
 }) => {
+  const {currentUserKey, userKeyRetrieved} = useContext(GuitarsContext)
 
   let guitarCardsArr = [];
 
@@ -60,13 +63,13 @@ const YourGuitarsContainer = ({
           className="your-guitars-section__user-key-form"
           onSubmit={getUserGuitars}
         >
-          <label htmlFor="userKey">User Key: </label>
+          <label htmlFor="userKey">Find list by user key: </label>
           <input
             className="your-guitars-section__user-key-input"
             onChange={userKey}
-            value={userKey}
           />
           <button type="submit">Go</button>
+          <p>Current user key: {userKeyRetrieved ? currentUserKey : null}</p>
         </form>
         <div className="your-guitars-section__container">
           {/* <GuitarSuggestionCard
