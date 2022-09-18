@@ -1,14 +1,14 @@
-import { createContext, useContext, useState } from "react";
-import UserGuitarsContext from "../../Context/UserGuitarsContext";
+import { useContext, useState } from "react";
+import GuitarsContext from "../../Context/GuitarsContext";
 import "./GuitarSuggestionCard.scss"
 
-const GuitarSuggestionCard = ({guitarPicUrl, guitarName, guitarPrice, guitarDescription, isUserCard, guitarId, currentUserKey, getUserGuitars}) => {
+const GuitarSuggestionCard = ({guitarPicUrl, guitarName, guitarPrice, guitarDescription, isUserCard, guitarId, currentUserKey, handleGuitarClick}) => {
 const [editedGuitarName, setEditedGuitarName] = useState("")
 const [editedGuitarPrice, setEditedGuitarPrice] = useState("");
 const [editedGuitarUrl, setEditedGuitarUrl] = useState("");
 const [editedGuitarDescription, setEditedGuitarDescription] = useState("");
 const [editPressed, setEditPressed] = useState(false);
-const { userGuitars, setUserGuitars } = useContext(UserGuitarsContext);
+const { userGuitars, setUserGuitars } = useContext(GuitarsContext);
 
 const handleDeletePress = async () => {
     const response = await fetch(
@@ -80,7 +80,7 @@ if(isUserCard === false){
     return (
       <>
         {!editPressed ? (
-          <div className="guitar-card">
+          <div className="guitar-card" onClick={handleGuitarClick}>
             <img className="guitar-card__image" src={guitarPicUrl} alt="" />
             <h4 className="guitar-card__name">{guitarName}</h4>
             <h5 className="guitar-card__price">{guitarPrice}</h5>

@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { UserGuitarsProvider } from './Context/UserGuitarsContext';
+import { GuitarsProvider } from './Context/GuitarsContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UserGuitarsProvider>
+    <GuitarsProvider>
       <App />
-    </UserGuitarsProvider>
+    </GuitarsProvider>
   </React.StrictMode>
 );
 
