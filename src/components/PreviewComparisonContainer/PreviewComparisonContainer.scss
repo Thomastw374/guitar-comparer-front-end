@@ -2,7 +2,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-block: 1rem;
+    width: 90vw;
+    .preview-comparison__title{
+        margin-block: 1rem;
+    }
     .preview-comparison__guitars-container{
         display: flex;
         justify-content: center;

@@ -17,7 +17,7 @@ const PreviewComparisonContainer = () => {
 
   return (
     <div className="preview-comparison">
-        <p>Click on guitars from either your own submitted guitars or the guitars provided. This will add them to the comparison preview. When you are ready, press the compare guitars butotn found above to compare the guitars.</p>
+        <p>Click on guitars from either your own submitted guitars or the guitars provided. This will add them to the comparison preview. When you are ready, press the compare guitars button found below to compare the guitars.</p>
       <h2 className="preview-comparison__title">Guitar Comparison Preview</h2>
       <div className="preview-comparison__guitars-container">
         {guitarOne === "empty" ? (

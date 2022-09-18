@@ -24,22 +24,23 @@ const GuitarSuggestionsPage = ({
     return (
       <div className="guitar-suggestions-page">
         <Nav />
-      <SearchContainer handleInput={handleInput} />
-      <PreviewComparisonContainer/>
-      <YourGuitarsContainer
-        newGuitarName={newGuitarName}
-        addUserGuitar={addUserGuitar}
-        newGuitarDescription={newGuitarDescription}
-        newGuitarPrice={newGuitarPrice}
-        newGuitarUrl={newGuitarUrl}
-        getUserGuitars={getUserGuitars}
-        userKey={userKey}
-        userGuitars={userGuitars}
-        handleDeletePress={handleDeletePress}
-        handleEditPress={handleEditPress}
-        editPressed={editPressed}
-        currentUserKey={currentUserKey}
+
+        <PreviewComparisonContainer />
+        <YourGuitarsContainer
+          newGuitarName={newGuitarName}
+          addUserGuitar={addUserGuitar}
+          newGuitarDescription={newGuitarDescription}
+          newGuitarPrice={newGuitarPrice}
+          newGuitarUrl={newGuitarUrl}
+          getUserGuitars={getUserGuitars}
+          userKey={userKey}
+          userGuitars={userGuitars}
+          handleDeletePress={handleDeletePress}
+          handleEditPress={handleEditPress}
+          editPressed={editPressed}
+          currentUserKey={currentUserKey}
         />
+        <SearchContainer handleInput={handleInput} />
         <GuitarSuggestionsContainer guitars={guitars} />
       </div>
     );

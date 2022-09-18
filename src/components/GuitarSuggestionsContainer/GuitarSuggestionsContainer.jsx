@@ -18,11 +18,11 @@ const GuitarSuggestionsContainer = ({ guitars, handleGuitarClick }) => {
   });
 
   return (
-    <div>
-      <h2 className="guitar-suggestions-title">
+    <div className="guitar-suggestions">
+      <h2 className="guitar-suggestions__title">
         Displaying all electric guitars
       </h2>
-      <div className="guitar-suggestions-container">{guitarCardsArr}</div>
+      <div className="guitar-suggestions__container">{guitarCardsArr}</div>
     </div>
   );
 };

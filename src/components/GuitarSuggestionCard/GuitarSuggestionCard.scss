@@ -1,6 +1,7 @@
 .guitar-card{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     width: 16rem;
     height: auto;
@@ -8,6 +9,7 @@
     margin:0.2rem;
     border: 1px black solid;
     box-shadow: 1px, 1px, 1px, 1px;
+    min-height: 18rem;
 
     .guitar-card__image{
         width: 10rem;

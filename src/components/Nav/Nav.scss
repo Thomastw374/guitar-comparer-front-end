@@ -1,4 +1,6 @@
 .nav{
+    display: flex;
+    align-items: center;
     width: 100%;
     background-color: rgb(3, 3, 47);
     height: 4rem;
@@ -6,7 +8,7 @@
     .nav__page-header{
         color: white;
         font-family: sans-serif;
-        font-weight: 200;
+        font-weight: 400;
         font-size: x-large;
         margin-left: 1rem;
     }
