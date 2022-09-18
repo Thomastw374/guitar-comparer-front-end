@@ -1,5 +1,6 @@
 import GuitarSuggestionsContainer from "../../components/GuitarSuggestionsContainer/GuitarSuggestionsContainer"
 import Nav from "../../components/Nav/Nav"
+import PreviewComparisonContainer from "../../components/PreviewComparisonContainer/PreviewComparisonContainer"
 import SearchContainer from "../../components/SearchContainer/SearchContainer"
 import YourGuitarsContainer from "../../components/YourGuitarsContainer/YourGuitarsContainer"
 import "./GuitarSuggestionsPage.scss"
@@ -24,6 +25,7 @@ const GuitarSuggestionsPage = ({
       <div className="guitar-suggestions-page">
         <Nav />
       <SearchContainer handleInput={handleInput} />
+      <PreviewComparisonContainer/>
       <YourGuitarsContainer
         newGuitarName={newGuitarName}
         addUserGuitar={addUserGuitar}

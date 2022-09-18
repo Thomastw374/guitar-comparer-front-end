@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import GuitarsContext from "../../Context/GuitarsContext";
 import "./GuitarSuggestionCard.scss"
 
-const GuitarSuggestionCard = ({guitarPicUrl, guitarName, guitarPrice, guitarDescription, isUserCard, guitarId, currentUserKey, handleGuitarClick}) => {
+const GuitarSuggestionCard = ({guitarPicUrl = "...", guitarName = "...", guitarPrice ="...", guitarDescription ="...", isUserCard, guitarId, currentUserKey, handleGuitarClick}) => {
 const [editedGuitarName, setEditedGuitarName] = useState("")
 const [editedGuitarPrice, setEditedGuitarPrice] = useState("");
 const [editedGuitarUrl, setEditedGuitarUrl] = useState("");
