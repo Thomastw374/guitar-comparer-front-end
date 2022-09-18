@@ -37,6 +37,10 @@ const GuitarSuggestionCard = ({
   };
 
   const handleEditPress = () => {
+    setEditedGuitarName(guitarName)
+    setEditedGuitarDescription(guitarDescription)
+    setEditedGuitarPrice(guitarPrice)
+    setEditedGuitarUrl(guitarPicUrl)
     setEditPressed(!editPressed);
     console.log(editPressed);
   };

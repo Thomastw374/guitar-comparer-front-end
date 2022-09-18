@@ -52,12 +52,32 @@ function App() {
     console.log("activated");
   };
 
-  const handleAddNewUserAndGuitar = async () => {
-    
+  const handleAddNewUserAndGuitar = async (e) => {
+    e.preventDefault();
+    const response = await fetch(`http://localhost:9090/new-user-guitar`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        guitarName: newGuitarName,
+        guitarPrice: newGuitarPrice,
+        guitarPicUrl: newGuitarImageUrl,
+        guitarDescription: newGuitarDescription
+      }),
+    });
+    const userKey = await response.text();
+    console.log(userKey)
+    setUserKey(userKey)
+
+    const responseTwo = await fetch(
+      `http://localhost:9090/user-guitars/${userKey}`
+    );
+    const newUserGuitars = await responseTwo.json();
+    setUserGuitars(newUserGuitars);
+    console.log(newUserGuitars);
+ 
   }
 
   const getUserGuitars = async (e) => {
-    console.log("activated")
     e.preventDefault();
       const response = await fetch(`http://localhost:9090/user-guitars/${currentUserKey}`);
       const yourGuitars = await response.json();
@@ -105,7 +125,7 @@ function App() {
             element={
               <GuitarSuggestionsPage
                 newGuitarName={handleNewGuitarName}
-                addUserGuitar={handleAddUserGuitar}
+                addUserGuitar={currentUserKey !== "" ? handleAddUserGuitar : handleAddNewUserAndGuitar}
                 newGuitarDescription={handleNewGuitarDescription}
                 newGuitarPrice={handleNewGuitarPrice}
                 newGuitarUrl={handleNewGuitarUrl}

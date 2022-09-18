@@ -19,6 +19,7 @@ const YourGuitarsContainer = ({
   currentUserKey,
   handleGuitarClick,
 }) => {
+
   let guitarCardsArr = [];
 
   if (userGuitars !== []) {
@@ -63,6 +64,7 @@ const YourGuitarsContainer = ({
           <input
             className="your-guitars-section__user-key-input"
             onChange={userKey}
+            value={userKey}
           />
           <button type="submit">Go</button>
         </form>
