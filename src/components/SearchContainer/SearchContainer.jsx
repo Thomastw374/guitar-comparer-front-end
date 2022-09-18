@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./SearchContainer.scss";
 
 const SearchContainer = ({handleInput}) => {
@@ -7,7 +8,7 @@ const SearchContainer = ({handleInput}) => {
           <label htmlFor="">Search by name: </label>
           <input type="search" name="" id="" onInput={handleInput}/>
         </span>
-        <button className="search-container__compare-button">Compare Guitars</button>
+        <Link to="comparison-page" className="search-container__compare-button">Compare Guitars</Link >
       </div>
     );
 }

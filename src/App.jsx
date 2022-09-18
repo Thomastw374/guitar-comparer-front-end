@@ -52,6 +52,10 @@ function App() {
     console.log("activated");
   };
 
+  const handleAddNewUserAndGuitar = async () => {
+    
+  }
+
   const getUserGuitars = async (e) => {
     console.log("activated")
     e.preventDefault();
@@ -88,31 +92,13 @@ function App() {
    getGuitars();
   }, []);
 
-  const guitarPair = [
-    [
-      "Guitar Pic Url 1",
-      "Guitar Name 1",
-      "Guitar Price 1",
-      "Guitar Description 1",
-    ],
-    [
-      "Guitar Pic Url 2",
-      "Guitar Name 2",
-      "Guitar Price 2",
-      "Guitar Description 2",
-    ],
-  ];
-  
-
-
-
   return (
     <Router>
       <div className="App">
         <Routes>
           <Route
             path="/comparison-page"
-            element={<GuitarComparisonPage guitarPair={guitarPair} />}
+            element={<GuitarComparisonPage />}
           />
           <Route
             path="/"
