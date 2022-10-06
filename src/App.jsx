@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import GuitarsContext from "./Context/GuitarsContext";
+import GuitarsContext from "./context/GuitarsContext";
 import GuitarComparisonPage from "./pages/GuitarComparisonPage/GuitarComparisonPage";
 import GuitarSuggestionsPage from "./pages/GuitarSuggestionsPage/GuitarSuggestionsPage";
 
@@ -37,7 +37,7 @@ function App() {
 
   const handleAddUserGuitar = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:9090/user-guitar`, {
+    const response = await fetch(`http://localhost:8080/user-guitar`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -49,7 +49,7 @@ function App() {
       }),
     });
     const responseTwo = await fetch(
-      `http://localhost:9090/user-guitars/${currentUserKey}`
+      `http://localhost:8080/user-guitars/${currentUserKey}`
     );
     const yourGuitars = await responseTwo.json();
     setUserGuitars(yourGuitars);
@@ -59,7 +59,7 @@ function App() {
 
   const handleAddNewUserAndGuitar = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:9090/new-user-guitar`, {
+    const response = await fetch(`http://localhost:8080/new-user-guitar`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -74,7 +74,7 @@ function App() {
     setUserKey(userKey)
 
     const responseTwo = await fetch(
-      `http://localhost:9090/user-guitars/${userKey}`
+      `http://localhost:8080/user-guitars/${userKey}`
     );
     const newUserGuitars = await responseTwo.json();
     setUserGuitars(newUserGuitars);
@@ -86,7 +86,7 @@ function App() {
 
   const getUserGuitars = async (e) => {
     e.preventDefault();
-      const response = await fetch(`http://localhost:9090/user-guitars/${currentUserKey}`);
+      const response = await fetch(`http://localhost:8080/user-guitars/${currentUserKey}`);
       const yourGuitars = await response.json();
       setUserGuitars(yourGuitars);
       
@@ -95,10 +95,10 @@ function App() {
 
   const getGuitars = async () => {
     const guitarData = [];
-    const url = "http://localhost:9090/guitars";
+    const url = "http://localhost:8080/guitars?sortBy=guitarName";
     const res = await fetch(url);
     guitarData.push(await res.json());
-    setGuitars(guitarData[0]);
+    setGuitars(guitarData[0].content);
     console.log(guitarData);
   };
 

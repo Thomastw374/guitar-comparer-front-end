@@ -3,6 +3,7 @@ import "./GuitarSuggestionsContainer.scss"
 
 const GuitarSuggestionsContainer = ({ guitars, handleGuitarClick }) => {
   const guitarCardsArr = guitars.map((guitar) => {
+    console.log(guitar)
     return (
       <>
         <GuitarSuggestionCard
@@ -11,6 +12,7 @@ const GuitarSuggestionsContainer = ({ guitars, handleGuitarClick }) => {
           guitarPicUrl={guitar.guitarPicUrl}
           guitarPrice={guitar.guitarPrice}
           guitarDescription={guitar.guitarDescription}
+          guitarMiniDescription={guitar.guitarMiniDescription}
           handleGuitarClick={handleGuitarClick}
         />
       </>

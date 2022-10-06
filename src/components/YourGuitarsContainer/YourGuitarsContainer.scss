@@ -1,5 +1,8 @@
 .your-guitars-section {
     width: 90vw;
+  .your-guitars-section__intro{
+    margin-top: 2rem;
+  }
   .your-guitars-section__container {
     display: flex;
     flex-direction: row;

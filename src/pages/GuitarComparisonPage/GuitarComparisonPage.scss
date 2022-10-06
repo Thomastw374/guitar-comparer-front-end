@@ -6,11 +6,26 @@
 
 .comparison-page{
     display: flex;
+    justify-content: space-around;
+    background-color: rgb(238, 238, 238);
 
     .comparison-page__guitar-container{
-        width: 50vw;
+        width: auto;
+        padding: 1rem;
+        margin: 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: white;
+    }
+
+    .comparison-page__description{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      *{
+        padding-block: 0.1rem;
+        margin-inline: 1rem;
+      }
     }
 }

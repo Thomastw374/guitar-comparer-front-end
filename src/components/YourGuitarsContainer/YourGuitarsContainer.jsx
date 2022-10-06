@@ -1,6 +1,5 @@
 import { useContext } from "react";
-import { useInRouterContext } from "react-router-dom";
-import GuitarsContext from "../../Context/GuitarsContext";
+import GuitarsContext from "../../context/GuitarsContext";
 import AddGuitarCard from "../AddGuitarCard/AddGuitarCard";
 import GuitarSuggestionCard from "../GuitarSuggestionCard/GuitarSuggestionCard";
 import "./YourGuitarsContainer.scss";
@@ -51,7 +50,7 @@ const YourGuitarsContainer = ({
   return (
     <>
       <div className="your-guitars-section">
-        <p>
+        <p className="your-guitars-section__intro">
           The 'Your guitars' section is where your user submitted guitars
           appear. To retrieve a previously created guitar list enter the 32
           character user key you were given upon submission of your first

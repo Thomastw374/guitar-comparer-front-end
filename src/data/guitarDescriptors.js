@@ -1,0 +1,11 @@
+const escapedString =
+  "&lt;/h2&gt;&lt;ul&gt; &lt;li&gt;&lt;b&gt;Model Number:&lt;/b&gt; 0370121554&lt;/li&gt; &lt;li&gt;&lt;b&gt;Series:&lt;/b&gt; Mini&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Body &amp;amp; Bridge&lt;/h3&gt;&lt;ul&gt; &lt;li&gt;&lt;b&gt;Body:&lt;/b&gt; Poplar&lt;/li&gt; &lt;li&gt;&lt;b&gt;Shape:&lt;/b&gt; Stratocaster&lt;/li&gt; &lt;li&gt;&lt;b&gt;Bridge:&lt;/b&gt; 6-Saddle Hardtail&lt;/li&gt; &lt;li&gt;&lt;b&gt;Construction:&lt;/b&gt; Bolt-On&lt;/li&gt; &lt;li&gt;&lt;b&gt;Finish:&lt;/b&gt; Dakota Red&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Neck &amp;amp; Fingerboard&lt;/h3&gt;&lt;ul&gt; &lt;li&gt;&lt;b&gt;Neck:&lt;/b&gt; Maple&lt;/li&gt; &lt;li&gt;&lt;b&gt;Profile:&lt;/b&gt; &quot;C&quot;&lt;/li&gt; &lt;li&gt;&lt;b&gt;Scale Length:&lt;/b&gt; 22.75&quot; (578 mm)&lt;/li&gt; &lt;li&gt;&lt;b&gt;Fingerboard:&lt;/b&gt; Laurel&lt;/li&gt; &lt;li&gt;&lt;b&gt;Radius:&lt;/b&gt; 9.5&quot; (241 mm)&lt;/li&gt; &lt;li&gt;&lt;b&gt;Frets:&lt;/b&gt; 20 Narrow Tall&lt;/li&gt; &lt;li&gt;&lt;b&gt;Inlays:&lt;/b&gt; Pearloid Dots&lt;/li&gt; &lt;li&gt;&lt;b&gt;Nut:&lt;/b&gt; Synthetic Bone&lt;/li&gt; &lt;li&gt;&lt;b&gt;Nut Width:&lt;/b&gt; 1.6&quot; (40.6 mm)&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Electronics &amp;amp; Hardware&lt;/h3&gt;&lt;ul&gt; &lt;li&gt;&lt;b&gt;Bridge Pickup:&lt;/b&gt; Standard Single Coil Strat&lt;/li&gt; &lt;li&gt;&lt;b&gt;Middle Pickup:&lt;/b&gt; Standard Single Coil Strat&lt;/li&gt; &lt;li&gt;&lt;b&gt;Neck Pickup:&lt;/b&gt; Standard Single Coil Strat&lt;/li&gt; &lt;li&gt;&lt;b&gt;Controls:&lt;/b&gt; Volume, Tone, 5-Way Selector&lt;/li&gt; &lt;li&gt;&lt;b&gt;Tuning Machines:&lt;/b&gt; Standard Die-Cast&lt;/li&gt; &lt;li&gt;&lt;b&gt;Control Knobs:&lt;/b&gt; White Plastic&lt;/li&gt; &lt;li&gt;&lt;b&gt;Pickguard:&lt;/b&gt; 1-Ply White&lt;/li&gt; &lt;li&gt;&lt;b&gt;Hardware:&lt;/b&gt; Chrome&lt;/li&gt; &lt;li&gt;&lt;b&gt;Strings:&lt;/b&gt; Fender USA 250L, NPS (.009, - .042 Gauges)&lt;/li&gt; &lt;li&gt;&lt;b&gt;Case Included:&lt;/b&gt; No&lt;/li&gt;&lt;/ul&gt;";
+
+  function htmlDecode(input) {
+    input = input.replaceAll("&lt;", "<");
+    input = input.replaceAll("&gt;", ">");
+    input = input.replaceAll(">", ">/n")
+    return input
+}
+
+console.log( htmlDecode(escapedString) )    

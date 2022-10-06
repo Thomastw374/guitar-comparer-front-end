@@ -1,7 +1,7 @@
 import "./PreviewComparisonContainer.scss";
 import GuitarSuggestionCard from "../GuitarSuggestionCard/GuitarSuggestionCard";
 import { useContext } from "react";
-import GuitarsContext from "../../Context/GuitarsContext";
+import GuitarsContext from "../../context/GuitarsContext";
 
 const PreviewComparisonContainer = () => {
   const { guitarOne, guitarTwo, setGuitarOne, setGuitarTwo } =
@@ -17,8 +17,13 @@ const PreviewComparisonContainer = () => {
 
   return (
     <div className="preview-comparison">
-        <p>Click on guitars from either your own submitted guitars or the guitars provided. This will add them to the comparison preview. When you are ready, press the compare guitars button found below to compare the guitars.</p>
       <h2 className="preview-comparison__title">Guitar Comparison Preview</h2>
+      <p className="preview-comparison__intro-text">
+        Click on guitars from either your own submitted guitars or the guitars
+        provided. This will add them to the comparison preview. When you are
+        ready, press the compare guitars button found below to compare the
+        guitars.
+      </p>
       <div className="preview-comparison__guitars-container">
         {guitarOne === "empty" ? (
           <GuitarSuggestionCard

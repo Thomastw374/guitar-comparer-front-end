@@ -10,9 +10,17 @@
     border: 1px black solid;
     box-shadow: 1px, 1px, 1px, 1px;
     min-height: 18rem;
+    background-color: white;
 
     .guitar-card__image{
         width: 10rem;
+        background-color: transparent;
+    }
+
+    .guitar-card__description{
+        *{
+            font-size: 1rem;
+        }
     }
 }
 

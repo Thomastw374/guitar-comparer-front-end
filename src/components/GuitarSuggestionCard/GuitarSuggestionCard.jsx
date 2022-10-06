@@ -1,17 +1,19 @@
 import { useContext, useState } from "react";
-import GuitarsContext from "../../Context/GuitarsContext";
+import GuitarsContext from "../../context/GuitarsContext";
+import GenericGuitar from "../../assets/generic-guitar.png";
 import "./GuitarSuggestionCard.scss";
 
 const GuitarSuggestionCard = ({
-  guitarPicUrl = "...",
+  guitarPicUrl = "",
   guitarName = "...",
   guitarPrice = "...",
   guitarDescription = "...",
+  guitarMiniDescription = "...",
   isUserCard,
   guitarId,
   currentUserKey,
   isCompared,
-  handleRemoveClick
+  handleRemoveClick,
 }) => {
   const [editedGuitarName, setEditedGuitarName] = useState("");
   const [editedGuitarPrice, setEditedGuitarPrice] = useState("");
@@ -20,40 +22,52 @@ const GuitarSuggestionCard = ({
   const [editPressed, setEditPressed] = useState(false);
   const { setUserGuitars, handleGuitarClicks } = useContext(GuitarsContext);
 
+  const htmlDecode = (input) => {
+    input = input.replaceAll("&lt;", "<");
+    input = input.replaceAll("&gt;", ">");
+    input = input.replaceAll("&amp;", "&");
+    input = input.replaceAll("&quot;", `"`);
+
+    return input;
+  };
+  
+  guitarDescription = htmlDecode(guitarDescription)
+
   const truncatedGuitarDescription =
-    guitarDescription
-      .replace("Full Description View Full Description ", "")
+    guitarMiniDescription
       .substring(0, 100) + "...";
 
+  
+
   const handleGuitarClick = () => {
-    if(!isCompared){
+    if (!isCompared) {
       handleGuitarClicks(
         guitarPicUrl,
         guitarName,
         guitarPrice,
         guitarDescription
       );
-    } 
+    }
   };
 
   const handleEditPress = () => {
-    setEditedGuitarName(guitarName)
-    setEditedGuitarDescription(guitarDescription)
-    setEditedGuitarPrice(guitarPrice)
-    setEditedGuitarUrl(guitarPicUrl)
+    setEditedGuitarName(guitarName);
+    setEditedGuitarDescription(guitarDescription);
+    setEditedGuitarPrice(guitarPrice);
+    setEditedGuitarUrl(guitarPicUrl);
     setEditPressed(!editPressed);
     console.log(editPressed);
   };
 
   const handleDeletePress = async () => {
     const response = await fetch(
-      `http://localhost:9090/user-guitar/${guitarId}`,
+      `http://localhost:8080/user-guitar/${guitarId}`,
       {
         method: "DELETE",
       }
     );
     const responseTwo = await fetch(
-      `http://localhost:9090/user-guitars/${currentUserKey}`
+      `http://localhost:8080/user-guitars/${currentUserKey}`
     );
     const yourGuitars = await responseTwo.json();
     setUserGuitars(yourGuitars);
@@ -63,7 +77,7 @@ const GuitarSuggestionCard = ({
   const editUserGuitar = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      `http://localhost:9090/user-guitar/${guitarId}`,
+      `http://localhost:8080/user-guitar/${guitarId}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -77,7 +91,7 @@ const GuitarSuggestionCard = ({
       }
     );
     const responseTwo = await fetch(
-      `http://localhost:9090/user-guitars/${currentUserKey}`
+      `http://localhost:8080/user-guitars/${currentUserKey}`
     );
     const yourGuitars = await responseTwo.json();
     setUserGuitars(yourGuitars);
@@ -88,11 +102,21 @@ const GuitarSuggestionCard = ({
   if (isUserCard === false) {
     return (
       <div className="guitar-card" onClick={handleGuitarClick}>
-        <img className="guitar-card__image" src={guitarPicUrl} alt="" />
+        {guitarPicUrl === "" ? (
+          <img
+            src={GenericGuitar}
+            alt="Generic Guitar"
+            className="guitar-card__image"
+          />
+        ) : (
+          <img className="guitar-card__image" src={guitarPicUrl} alt="" />
+        )}
         <h4 className="guitar-card__name">{guitarName}</h4>
         <h5 className="guitar-card__price">{guitarPrice}</h5>
-        <p className="guitar-card__description">{truncatedGuitarDescription}</p>
-        {isCompared ? <button onClick={handleRemoveClick}>Remove</button> : null}
+        <div className="guitar-card__description">{truncatedGuitarDescription}</div>
+        {isCompared ? (
+          <button onClick={handleRemoveClick}>Remove</button>
+        ) : null}
       </div>
     );
   }
