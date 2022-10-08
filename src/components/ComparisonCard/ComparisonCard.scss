@@ -4,13 +4,14 @@
   margin: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
   background-color: white;
   
 
-  .cguitar-comparison-card__description {
+  .guitar-comparison-card__description {
     display: flex;
     flex-direction: column;
+    align-items: start;
     width: 100%;
     * {
       padding-block: 0.1rem;
