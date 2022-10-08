@@ -39,17 +39,23 @@ export const addUserGuitar = async (e, currentUserKey, newGuitarName, newGuitarP
 
 // Should call getUserGuitars with the returned key
 
-export const handleAddNewUserAndGuitar = async (e, newGuitar) => {
+export const addNewUserAndGuitar = async (
+  e,
+  newGuitarName,
+  newGuitarPrice,
+  newGuitarImageUrl,
+  newGuitarDescription
+) => {
   e.preventDefault();
 
   const response = await fetch(`http://localhost:8080/new-user-guitar`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      guitarName: newGuitar.newGuitarName,
-      guitarPrice: newGuitar.newGuitarPrice,
-      guitarPicUrl: newGuitar.newGuitarImageUrl,
-      guitarDescription: newGuitar.newGuitarDescription,
+      guitarName: newGuitarName,
+      guitarPrice: newGuitarPrice,
+      guitarPicUrl: newGuitarImageUrl,
+      guitarDescription: newGuitarDescription,
     }),
   });
 

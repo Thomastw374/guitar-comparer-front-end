@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GuitarsContext from "./context/GuitarsContext";
 import GuitarComparisonPage from "./pages/GuitarComparisonPage/GuitarComparisonPage";
 import GuitarSuggestionsPage from "./pages/GuitarSuggestionsPage/GuitarSuggestionsPage";
-import { addUserGuitar } from "./api/userService";
+import { addUserGuitar, addNewUserAndGuitar, getUserGuitars } from "./api/userService";
+import { getGuitars } from "./api/guitarsService";
 
 function App() {
-  const [guitars, setGuitars]= useState([])
-  const [searchTerm, setSearchTerm] = useState("")
+  const [guitars, setGuitars] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const {
     userGuitars,
     setUserGuitars,
@@ -15,18 +16,18 @@ function App() {
     setUserKey,
     setUserKeyRetrieved,
   } = useContext(GuitarsContext);
-  const [newGuitarDescription, setNewGuitarDescription] = useState("")
+  const [newGuitarDescription, setNewGuitarDescription] = useState("");
   const [newGuitarName, setNewGuitarName] = useState("");
   const [newGuitarImageUrl, setNewGuitarImageUrl] = useState("");
   const [newGuitarPrice, setNewGuitarPrice] = useState("");
 
   const handleNewGuitarName = (e) => {
-    setNewGuitarName(e.target.value)
-  } 
+    setNewGuitarName(e.target.value);
+  };
 
   const handleNewGuitarUrl = (e) => {
     setNewGuitarImageUrl(e.target.value);
-  }; 
+  };
 
   const handleNewGuitarDescription = (e) => {
     setNewGuitarDescription(e.target.value);
@@ -46,52 +47,57 @@ function App() {
       newGuitarImageUrl,
       newGuitarDescription
     );
-    console.log(yourGuitars[0]);
-    // this is returning a promise think I need to await
+
     setUserGuitars(yourGuitars[0]);
-    
   };
 
   const handleAddNewUserAndGuitar = async (e) => {
-    e.preventDefault();
-    const response = await fetch(`http://localhost:8080/new-user-guitar`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        guitarName: newGuitarName,
-        guitarPrice: newGuitarPrice,
-        guitarPicUrl: newGuitarImageUrl,
-        guitarDescription: newGuitarDescription
-      }),
-    });
-    const userKey = await response.text();
-    setUserKey(userKey)
+    const userKey = await addNewUserAndGuitar(
+      e,
+      newGuitarName,
+      newGuitarPrice,
+      newGuitarImageUrl,
+      newGuitarDescription
+    );
 
-    const responseTwo = await fetch(
+    setUserKey(userKey);
+
+    // shouldn't need this shit.
+
+    const response = await fetch(
       `http://localhost:8080/user-guitars/${userKey}`
     );
-    const newUserGuitars = await responseTwo.json();
+    const newUserGuitars = await response.json();
+
+    setUserKeyRetrieved(true)
     setUserGuitars(newUserGuitars);
 
-    setUserKeyRetrieved(true);
- 
-  }
-
-  const getUserGuitars = async (e) => {
-    e.preventDefault();
-      const response = await fetch(`http://localhost:8080/user-guitars/${currentUserKey}`);
-      const yourGuitars = await response.json();
-      setUserGuitars(yourGuitars);
-      
-      setUserKeyRetrieved(true);
+    // getUserGuitars();
   };
 
-  const getGuitars = async () => {
-    const guitarData = [];
-    const url = "http://localhost:8080/guitars?sortBy=guitarName";
-    const res = await fetch(url);
-    guitarData.push(await res.json());
-    setGuitars(guitarData[0].content);
+  // const handleGetUserGuitars = async (e) => {
+  //   e.preventDefault();
+  //   const response = await fetch(
+  //     `http://localhost:8080/user-guitars/${currentUserKey}`
+  //   );
+  //   const yourGuitars = await response.json();
+  //   setUserGuitars(yourGuitars);
+
+  //   setUserKeyRetrieved(true);
+  // };
+
+    const handleGetUserGuitars = async (e) => {
+      const yourGuitars = await getUserGuitars(currentUserKey)
+      setUserGuitars(yourGuitars[0]);
+
+      setUserKeyRetrieved(true);
+    };
+
+  const handleGetGuitars = async (e) => {
+    e.preventDefault();
+    const guitars = await getGuitars();
+    console.log(guitars);
+    setGuitars(guitars);
   };
 
   const filteredGuitars = guitars.filter((guitar) => {
@@ -105,33 +111,34 @@ function App() {
   };
 
   const handleUserKey = (e) => {
-    setUserKey(e.target.value)
-  }
+    setUserKey(e.target.value);
+  };
 
   useEffect(() => {
-   getGuitars();
+    handleGetGuitars();
   }, []);
 
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route
-            path="/comparison-page"
-            element={<GuitarComparisonPage />}
-          />
+          <Route path="/comparison-page" element={<GuitarComparisonPage />} />
           <Route
             path="/"
             element={
               <GuitarSuggestionsPage
                 newGuitarName={handleNewGuitarName}
-                addUserGuitar={currentUserKey !== "" ? handleAddUserGuitar : handleAddNewUserAndGuitar}
+                addUserGuitar={
+                  currentUserKey !== ""
+                    ? handleAddUserGuitar
+                    : handleAddNewUserAndGuitar
+                }
                 newGuitarDescription={handleNewGuitarDescription}
                 newGuitarPrice={handleNewGuitarPrice}
                 newGuitarUrl={handleNewGuitarUrl}
                 guitars={filteredGuitars}
                 handleInput={handleInput}
-                getUserGuitars={getUserGuitars}
+                getUserGuitars={handleGetUserGuitars}
                 userKey={handleUserKey}
                 userGuitars={userGuitars}
                 currentUserKey={currentUserKey}
