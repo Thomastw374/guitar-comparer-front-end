@@ -66,7 +66,7 @@ function App() {
 
     setUserKey(userKey);
 
-    // shouldn't need this shit.
+    // shouldn't need this.
 
     const response = await fetch(
       `http://localhost:8080/user-guitars/${userKey}`
