@@ -3,20 +3,15 @@ import GuitarSuggestionCard from "../GuitarSuggestionCard/GuitarSuggestionCard";
 import "./GuitarSuggestionsContainer.scss";
 import { getGuitars } from "../../api/guitarsService";
 
-const GuitarSuggestionsContainer = ({ handleGuitarClick }) => {
+const GuitarSuggestionsContainer = ({ handleGuitarClick, searchTerm }) => {
   const [sortBy, setSortBy] = useState("");
   const [guitars, setGuitars] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
 
   const filteredGuitars = guitars.filter((guitar) => {
     const guitarNameLower = guitar.guitarName.toLowerCase();
 
     return guitarNameLower.includes(searchTerm);
   });
-
-  const handleInput = (event) => {
-    setSearchTerm(event.target.value.toLowerCase());
-  };
 
   useEffect(() => {
     handleGetGuitars();
@@ -27,7 +22,7 @@ const GuitarSuggestionsContainer = ({ handleGuitarClick }) => {
     setGuitars(guitars);
   };
 
-  const guitarCardsArr = guitars.map((guitar) => {
+  const guitarCardsArr = filteredGuitars.map((guitar) => {
     return (
       <>
         <GuitarSuggestionCard
