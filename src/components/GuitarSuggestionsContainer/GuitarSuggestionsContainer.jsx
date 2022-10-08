@@ -1,9 +1,11 @@
+import { useState } from "react";
 import GuitarSuggestionCard from "../GuitarSuggestionCard/GuitarSuggestionCard";
 import "./GuitarSuggestionsContainer.scss"
 
 const GuitarSuggestionsContainer = ({ guitars, handleGuitarClick }) => {
+  const [sortBy, setSortBy] = useState("")
+
   const guitarCardsArr = guitars.map((guitar) => {
-    console.log(guitar)
     return (
       <>
         <GuitarSuggestionCard

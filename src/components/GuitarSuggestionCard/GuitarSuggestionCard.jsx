@@ -56,7 +56,6 @@ const GuitarSuggestionCard = ({
     setEditedGuitarPrice(guitarPrice);
     setEditedGuitarUrl(guitarPicUrl);
     setEditPressed(!editPressed);
-    console.log(editPressed);
   };
 
   const handleDeletePress = async () => {
@@ -71,7 +70,6 @@ const GuitarSuggestionCard = ({
     );
     const yourGuitars = await responseTwo.json();
     setUserGuitars(yourGuitars);
-    console.log("delete activated");
   };
 
   const editUserGuitar = async (e) => {
@@ -95,7 +93,6 @@ const GuitarSuggestionCard = ({
     );
     const yourGuitars = await responseTwo.json();
     setUserGuitars(yourGuitars);
-    console.log("edit activated");
     setEditPressed(!editPressed);
   };
 

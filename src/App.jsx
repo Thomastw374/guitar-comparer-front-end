@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GuitarsContext from "./context/GuitarsContext";
 import GuitarComparisonPage from "./pages/GuitarComparisonPage/GuitarComparisonPage";
 import GuitarSuggestionsPage from "./pages/GuitarSuggestionsPage/GuitarSuggestionsPage";
+import { addUserGuitar } from "./api/userService";
 
 function App() {
   const [guitars, setGuitars]= useState([])
@@ -35,26 +36,20 @@ function App() {
     setNewGuitarPrice(e.target.value);
   };
 
+  // this also returns a boolean. Handle it
   const handleAddUserGuitar = async (e) => {
-    e.preventDefault();
-    const response = await fetch(`http://localhost:8080/user-guitar`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        guitarName: newGuitarName,
-        guitarPrice: newGuitarPrice,
-        guitarPicUrl: newGuitarImageUrl,
-        guitarDescription: newGuitarDescription,
-        userKey: currentUserKey,
-      }),
-    });
-    const responseTwo = await fetch(
-      `http://localhost:8080/user-guitars/${currentUserKey}`
+    const yourGuitars = await addUserGuitar(
+      e,
+      currentUserKey,
+      newGuitarName,
+      newGuitarPrice,
+      newGuitarImageUrl,
+      newGuitarDescription
     );
-    const yourGuitars = await responseTwo.json();
-    setUserGuitars(yourGuitars);
-
-    console.log("activated");
+    console.log(yourGuitars[0]);
+    // this is returning a promise think I need to await
+    setUserGuitars(yourGuitars[0]);
+    
   };
 
   const handleAddNewUserAndGuitar = async (e) => {
@@ -70,7 +65,6 @@ function App() {
       }),
     });
     const userKey = await response.text();
-    console.log(userKey)
     setUserKey(userKey)
 
     const responseTwo = await fetch(
@@ -78,7 +72,6 @@ function App() {
     );
     const newUserGuitars = await responseTwo.json();
     setUserGuitars(newUserGuitars);
-    console.log(newUserGuitars);
 
     setUserKeyRetrieved(true);
  
@@ -99,7 +92,6 @@ function App() {
     const res = await fetch(url);
     guitarData.push(await res.json());
     setGuitars(guitarData[0].content);
-    console.log(guitarData);
   };
 
   const filteredGuitars = guitars.filter((guitar) => {
@@ -110,7 +102,6 @@ function App() {
 
   const handleInput = (event) => {
     setSearchTerm(event.target.value.toLowerCase());
-    console.log(searchTerm);
   };
 
   const handleUserKey = (e) => {
