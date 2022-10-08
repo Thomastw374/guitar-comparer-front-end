@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import GuitarsContext from "../../context/GuitarsContext";
 import SearchAndSort from "../SearchAndSort/SearchAndSort";
 import "./SearchContainer.scss";
 
 const SearchContainer = ({handleInput}) => {
+  const {guitarOne, guitarTwo} = useContext(GuitarsContext)
 
     return (
       <div className="search-container">
