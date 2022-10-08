@@ -1,0 +1,21 @@
+.guitar-comparison-card {
+  width: auto;
+  padding: 1rem;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: white;
+  
+
+  .cguitar-comparison-card__description {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    * {
+      padding-block: 0.1rem;
+      margin-inline: 1rem;
+    }
+    
+  }
+}
