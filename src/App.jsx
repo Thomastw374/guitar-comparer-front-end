@@ -3,7 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GuitarsContext from "./context/GuitarsContext";
 import GuitarComparisonPage from "./pages/GuitarComparisonPage/GuitarComparisonPage";
 import GuitarSuggestionsPage from "./pages/GuitarSuggestionsPage/GuitarSuggestionsPage";
-import { addUserGuitar, addNewUserAndGuitar, getUserGuitars } from "./api/userService";
+import {
+  addUserGuitar,
+  addNewUserAndGuitar,
+  getUserGuitars,
+} from "./api/userService";
 import { getGuitars } from "./api/guitarsService";
 
 function App() {
@@ -69,39 +73,27 @@ function App() {
     );
     const newUserGuitars = await response.json();
 
-    setUserKeyRetrieved(true)
+    setUserKeyRetrieved(true);
     setUserGuitars(newUserGuitars);
 
     // getUserGuitars();
   };
 
-  // const handleGetUserGuitars = async (e) => {
-  //   e.preventDefault();
-  //   const response = await fetch(
-  //     `http://localhost:8080/user-guitars/${currentUserKey}`
-  //   );
-  //   const yourGuitars = await response.json();
-  //   setUserGuitars(yourGuitars);
+  const handleGetUserGuitars = async (e) => {
+    const yourGuitars = await getUserGuitars(e, currentUserKey);
+    console.log(yourGuitars[0]);
+    setUserGuitars(yourGuitars[0]);
 
-  //   setUserKeyRetrieved(true);
-  // };
-
-    const handleGetUserGuitars = async (e) => {
-      const yourGuitars = await getUserGuitars(currentUserKey)
-      setUserGuitars(yourGuitars[0]);
-
-      setUserKeyRetrieved(true);
-    };
+    setUserKeyRetrieved(true);
+  };
 
   const handleGetGuitars = async (e) => {
-    e.preventDefault();
-    const guitars = await getGuitars();
-    console.log(guitars);
+    const guitars = await getGuitars(e);
     setGuitars(guitars);
   };
 
   const filteredGuitars = guitars.filter((guitar) => {
-    let guitarNameLower = guitar.guitarName.toLowerCase();
+    const guitarNameLower = guitar.guitarName.toLowerCase();
 
     return guitarNameLower.includes(searchTerm);
   });
