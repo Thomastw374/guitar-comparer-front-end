@@ -1,26 +1,98 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import GuitarsContext from "../../context/GuitarsContext";
 import AddGuitarCard from "../AddGuitarCard/AddGuitarCard";
 import GuitarSuggestionCard from "../GuitarSuggestionCard/GuitarSuggestionCard";
 import "./YourGuitarsContainer.scss";
-
-// c2Nsbd8GoJey3EcHtWldmc5wAAcFDOYXy
+import {
+  addUserGuitar,
+  addNewUserAndGuitar,
+  getUserGuitars,
+} from "../../api/userService.js";
 
 const YourGuitarsContainer = ({
-  getUserGuitars,
-  userGuitars,
-  userKey,
-  addUserGuitar,
-  newGuitarName,
-  newGuitarDescription,
-  newGuitarPrice,
-  newGuitarUrl,
   handleEditPress,
   handleDeletePress,
   editPressed,
   handleGuitarClick,
 }) => {
-  const {currentUserKey, userKeyRetrieved} = useContext(GuitarsContext)
+  const [newGuitarDescription, setNewGuitarDescription] = useState("");
+  const [newGuitarName, setNewGuitarName] = useState("");
+  const [newGuitarImageUrl, setNewGuitarImageUrl] = useState("");
+  const [newGuitarPrice, setNewGuitarPrice] = useState("");
+  const {
+    userGuitars,
+    setUserGuitars,
+    currentUserKey,
+    setUserKey,
+    setUserKeyRetrieved,
+    userKeyRetrieved,
+  } = useContext(GuitarsContext);
+
+  const handleNewGuitarName = (e) => {
+    setNewGuitarName(e.target.value);
+  };
+
+  const handleNewGuitarUrl = (e) => {
+    setNewGuitarImageUrl(e.target.value);
+  };
+
+  const handleNewGuitarDescription = (e) => {
+    setNewGuitarDescription(e.target.value);
+  };
+
+  const handleNewGuitarPrice = (e) => {
+    setNewGuitarPrice(e.target.value);
+  };
+
+  const handleUserKey = (e) => {
+    setUserKey(e.target.value);
+  };
+
+  // this also returns a boolean. Handle it
+  const handleAddUserGuitar = async (e) => {
+    const yourGuitars = await addUserGuitar(
+      e,
+      currentUserKey,
+      newGuitarName,
+      newGuitarPrice,
+      newGuitarImageUrl,
+      newGuitarDescription
+    );
+
+    setUserGuitars(yourGuitars[0]);
+  };
+
+  const handleAddNewUserAndGuitar = async (e) => {
+    const userKey = await addNewUserAndGuitar(
+      e,
+      newGuitarName,
+      newGuitarPrice,
+      newGuitarImageUrl,
+      newGuitarDescription
+    );
+
+    setUserKey(userKey);
+
+    // shouldn't need this.
+
+    const response = await fetch(
+      `http://localhost:8080/user-guitars/${userKey}`
+    );
+    const newUserGuitars = await response.json();
+
+    setUserKeyRetrieved(true);
+    setUserGuitars(newUserGuitars);
+
+    // getUserGuitars();
+  };
+
+  const handleGetUserGuitars = async (e) => {
+    const yourGuitars = await getUserGuitars(e, currentUserKey);
+    console.log(yourGuitars[0]);
+    setUserGuitars(yourGuitars[0]);
+
+    setUserKeyRetrieved(true);
+  };
 
   let guitarCardsArr = [];
 
@@ -39,7 +111,7 @@ const YourGuitarsContainer = ({
             handleEditPress={handleEditPress}
             editPressed={editPressed}
             currentUserKey={currentUserKey}
-            getUserGuitars={getUserGuitars}
+            getUserGuitars={handleGetUserGuitars}
             handleGuitarClick={handleGuitarClick}
           />
         </>
@@ -60,12 +132,12 @@ const YourGuitarsContainer = ({
         <h2 className="your-guitars-section__title">Your Guitars</h2>
         <form
           className="your-guitars-section__user-key-form"
-          onSubmit={getUserGuitars}
+          onSubmit={handleGetUserGuitars}
         >
           <label htmlFor="userKey">Find list by user key: </label>
           <input
             className="your-guitars-section__user-key-input"
-            onChange={userKey}
+            onChange={handleUserKey}
           />
           <button type="submit">Go</button>
           <p>Current user key: {userKeyRetrieved ? currentUserKey : null}</p>
@@ -73,11 +145,16 @@ const YourGuitarsContainer = ({
         <div className="your-guitars-section__container">
           {guitarCardsArr}
           <AddGuitarCard
-            addUserGuitar={addUserGuitar}
-            newGuitarName={newGuitarName}
-            newGuitarDescription={newGuitarDescription}
-            newGuitarPrice={newGuitarPrice}
-            newGuitarUrl={newGuitarUrl}
+            newGuitarName={handleNewGuitarName}
+            addUserGuitar={
+              currentUserKey !== ""
+                ? handleAddUserGuitar
+                : handleAddNewUserAndGuitar
+            }
+            getUserGuitars={handleGetUserGuitars}
+            newGuitarDescription={handleNewGuitarDescription}
+            newGuitarPrice={handleNewGuitarPrice}
+            newGuitarUrl={handleNewGuitarUrl}
           />
         </div>
       </div>
