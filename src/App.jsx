@@ -6,52 +6,12 @@ import GuitarSuggestionsPage from "./pages/GuitarSuggestionsPage/GuitarSuggestio
 import { getGuitars } from "./api/guitarsService";
 
 function App() {
-  const [guitars, setGuitars] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const {
-    userGuitars,
-    currentUserKey
-  } = useContext(GuitarsContext);
-  
-
-  const handleGetGuitars = async (e) => {
-    const guitars = await getGuitars(e);
-    setGuitars(guitars);
-  };
-
-  const filteredGuitars = guitars.filter((guitar) => {
-    const guitarNameLower = guitar.guitarName.toLowerCase();
-
-    return guitarNameLower.includes(searchTerm);
-  });
-
-  const handleInput = (event) => {
-    setSearchTerm(event.target.value.toLowerCase());
-  };
-
-
-
-  useEffect(() => {
-    handleGetGuitars();
-  }, []);
-
   return (
     <Router>
       <div className="App">
         <Routes>
           <Route path="/comparison-page" element={<GuitarComparisonPage />} />
-          <Route
-            path="/"
-            element={
-              <GuitarSuggestionsPage
-                
-                guitars={filteredGuitars}
-                handleInput={handleInput}
-                userGuitars={userGuitars}
-                currentUserKey={currentUserKey}
-              />
-            }
-          />
+          <Route path="/" element={<GuitarSuggestionsPage />} />
         </Routes>
       </div>
     </Router>

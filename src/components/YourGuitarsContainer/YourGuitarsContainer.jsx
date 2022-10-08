@@ -74,7 +74,6 @@ const YourGuitarsContainer = ({
     setUserKey(userKey);
 
     // shouldn't need this.
-
     const response = await fetch(
       `http://localhost:8080/user-guitars/${userKey}`
     );
@@ -88,7 +87,7 @@ const YourGuitarsContainer = ({
 
   const handleGetUserGuitars = async (e) => {
     const yourGuitars = await getUserGuitars(e, currentUserKey);
-    console.log(yourGuitars[0]);
+    // Change this return an object
     setUserGuitars(yourGuitars[0]);
 
     setUserKeyRetrieved(true);
