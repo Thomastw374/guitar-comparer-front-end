@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import GuitarSuggestionCard from "../GuitarSuggestionCard/GuitarSuggestionCard";
 import "./GuitarSuggestionsContainer.scss";
 import { getGuitars } from "../../api/guitarsService";
 
-const GuitarSuggestionsContainer = ({ handleGuitarClick, searchTerm }) => {
+const GuitarSuggestionsContainer = ({ handleGuitarClick, searchTerm, numOfPages }) => {
   const [sortBy, setSortBy] = useState("");
   const [guitars, setGuitars] = useState([]);
 
@@ -19,7 +19,8 @@ const GuitarSuggestionsContainer = ({ handleGuitarClick, searchTerm }) => {
 
   const handleGetGuitars = async (e) => {
     const guitars = await getGuitars(e);
-    setGuitars(guitars);
+    numOfPages = guitars.totalPages
+    setGuitars(guitars.content);
   };
 
   const guitarCardsArr = filteredGuitars.map((guitar) => {

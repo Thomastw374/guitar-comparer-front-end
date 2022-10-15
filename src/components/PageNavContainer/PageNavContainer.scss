@@ -1,0 +1,9 @@
+.page-nums{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 0.2rem;
+    
+    *{
+        padding-inline: 0.1rem;
+    }
+}

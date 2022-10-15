@@ -1,3 +1,4 @@
+import Button from "../Button/Button";
 import "./AddGuitarCard.scss"
 
 const AddGuitarCard = ({
@@ -26,7 +27,7 @@ const AddGuitarCard = ({
           <label htmlFor="">Guitar description:</label>
           <input type="text" name="" id="" onChange={newGuitarDescription} />
         </div>
-        <button className="guitar-upload__button">Upload guitar</button>
+        <Button text = "Upload Guitar"/>
       </form>
     </div>
   );

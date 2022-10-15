@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GuitarSuggestionsContainer from "../../components/GuitarSuggestionsContainer/GuitarSuggestionsContainer";
 import Nav from "../../components/Nav/Nav";
+import PageNavContainer from "../../components/PageNavContainer/PageNavContainer";
 import PreviewComparisonContainer from "../../components/PreviewComparisonContainer/PreviewComparisonContainer";
 import SearchContainer from "../../components/SearchContainer/SearchContainer";
 import YourGuitarsContainer from "../../components/YourGuitarsContainer/YourGuitarsContainer";
@@ -46,6 +47,7 @@ const GuitarSuggestionsPage = ({
         currentUserKey={currentUserKey}
       />
       <SearchContainer handleInput={handleInput} />
+      <PageNavContainer numOfPages={2}/>
       <GuitarSuggestionsContainer searchTerm={searchTerm} />
     </div>
   );

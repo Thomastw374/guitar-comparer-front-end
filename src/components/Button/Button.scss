@@ -1,0 +1,14 @@
+@use "../../styles/variables" as *;
+
+.button {
+  margin: 0.4rem;
+  color: white;
+  text-decoration: none;
+  border: white 2px solid;
+  padding: 0.3rem;
+  background-color: $primary-color;
+}
+
+.button:hover {
+  background-color: rgb(76, 76, 166);
+}

@@ -7,5 +7,5 @@ export const getGuitars = async (sortBy) => {
   const res = await fetch(url);
   guitarData = await res.json();
   console.log(guitarData);
-  return guitarData.content
+  return guitarData
 };

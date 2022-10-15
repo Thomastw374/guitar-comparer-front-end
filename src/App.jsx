@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GuitarComparisonPage from "./pages/GuitarComparisonPage/GuitarComparisonPage";
 import GuitarSuggestionsPage from "./pages/GuitarSuggestionsPage/GuitarSuggestionsPage";
+import "./styles/main.scss"
 
 function App() {
   return (

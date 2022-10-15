@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import GuitarsContext from "../../context/GuitarsContext";
 import GenericGuitar from "../../assets/generic-guitar.png";
 import "./GuitarSuggestionCard.scss";
+import Button from "../Button/Button";
 
 const GuitarSuggestionCard = ({
   guitarPicUrl = "",
@@ -110,9 +111,11 @@ const GuitarSuggestionCard = ({
         )}
         <h4 className="guitar-card__name">{guitarName}</h4>
         <h5 className="guitar-card__price">{guitarPrice}</h5>
-        <div className="guitar-card__description">{truncatedGuitarDescription}</div>
+        <div className="guitar-card__description">
+          {truncatedGuitarDescription}
+        </div>
         {isCompared ? (
-          <button onClick={handleRemoveClick}>Remove</button>
+          <Button handleAction={handleRemoveClick} text={"Remove"}></Button>
         ) : null}
       </div>
     );
@@ -129,8 +132,8 @@ const GuitarSuggestionCard = ({
             {truncatedGuitarDescription}
           </p>
           <div className="guitar-card__buttons">
-            <button onClick={handleEditPress}>Edit</button>
-            <button onClick={handleDeletePress}>Delete</button>
+            <Button handleAction={handleEditPress} text="Edit" />
+            <Button handleAction={handleDeletePress} text="Delete"/>
           </div>
         </div>
       ) : (
@@ -176,7 +179,7 @@ const GuitarSuggestionCard = ({
                 defaultValue={guitarDescription}
               />
             </div>
-            <button className="guitar-upload__button">Finish editing</button>
+            <Button text="Finish Editing"/>
           </form>
         </div>
       )}

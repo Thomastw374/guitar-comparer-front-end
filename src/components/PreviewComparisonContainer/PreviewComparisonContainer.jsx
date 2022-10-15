@@ -8,7 +8,8 @@ const PreviewComparisonContainer = () => {
     useContext(GuitarsContext);
 
   const removeGuitarOne = () => {
-    setGuitarOne("empty");
+    setGuitarOne("empty")
+    console.log(guitarOne)
   };
 
   const removeGuitarTwo = () => {
