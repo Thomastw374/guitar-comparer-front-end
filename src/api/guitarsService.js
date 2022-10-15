@@ -1,6 +1,5 @@
 
 
-// returns data needed by setGuitars 
 export const getGuitars = async (sortBy, pageNum) => {
   let guitarData = [];
   const url = `http://localhost:8080/guitars${

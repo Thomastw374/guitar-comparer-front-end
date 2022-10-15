@@ -4,8 +4,17 @@ import "./GuitarSuggestionsContainer.scss";
 import { getGuitars } from "../../api/guitarsService";
 
 const GuitarSuggestionsContainer = ({ handleGuitarClick, searchTerm, numOfPages }) => {
-  const [sortBy, setSortBy] = useState("");
+  const [sortBy, setSortBy] = useState("guitarPrice");
+  const [pageNum, setPageNum] = useState("0")
   const [guitars, setGuitars] = useState([]);
+
+  const handleSortChange = () => {
+
+  }
+
+  const handlePageChange = () => {
+
+  }
 
   const filteredGuitars = guitars.filter((guitar) => {
     const guitarNameLower = guitar.guitarName.toLowerCase();
