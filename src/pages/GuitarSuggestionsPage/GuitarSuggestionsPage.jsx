@@ -53,7 +53,7 @@ const GuitarSuggestionsPage = ({
       />
       <SearchContainer handleInput={handleInput} handleSortChange={handleSortChange} />
       <PageNavContainer numOfPages={2} />
-      <GuitarSuggestionsContainer searchTerm={searchTerm} />
+      <GuitarSuggestionsContainer searchTerm={searchTerm} sortBy={sortBy} />
     </div>
   );
 };

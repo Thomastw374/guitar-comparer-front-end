@@ -6,7 +6,7 @@ const PageNum = ({pageNumber}) => {
     const {pageNum, setPageNum} = useContext(GuitarsContext)
 
     const handlePageChange = (pageNum) => {
-      setPageNum(pageNum);
+      setPageNum(pageNum-1);
       console.log(pageNum);
     };
     

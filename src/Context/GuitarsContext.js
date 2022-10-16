@@ -9,7 +9,7 @@ export const GuitarsProvider = ({children}) => {
     const [guitarTwo, setGuitarTwo] = useState("empty")
     const [currentUserKey, setUserKey] = useState("")
     const [userKeyRetrieved, setUserKeyRetrieved] = useState(false);
-    const [pageNum, setPageNum] = useState("1");
+    const [pageNum, setPageNum] = useState("0");
 
     const handleGuitarClicks = (guitarNam, guitarPric, guitarDesc, guitarImgUrl) => {
         if (guitarOne === "empty") {           
