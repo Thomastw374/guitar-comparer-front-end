@@ -7,7 +7,7 @@ const PageNavContainer = ({numOfPages}) => {
 
 
    for (let i = 1; i <= numOfPages; i++) {
-    pageNums.push(<PageNum pageNum={i}/>) 
+    pageNums.push(<PageNum pageNumber={i} />); 
    }
    
     return(<div className="page-nums">{pageNums}</div>)

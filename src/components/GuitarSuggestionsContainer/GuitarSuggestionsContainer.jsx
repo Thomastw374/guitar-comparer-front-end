@@ -4,17 +4,11 @@ import "./GuitarSuggestionsContainer.scss";
 import { getGuitars } from "../../api/guitarsService";
 
 const GuitarSuggestionsContainer = ({ handleGuitarClick, searchTerm, numOfPages }) => {
-  const [sortBy, setSortBy] = useState("guitarPrice");
-  const [pageNum, setPageNum] = useState("0")
   const [guitars, setGuitars] = useState([]);
 
-  const handleSortChange = () => {
+  // FOR PAGE NUMS HAVE THEM BE HIGHLIGHTED IF THE CURRENT PAGENUM MATCHES THEIR PAGENUM. Using page num in two places now so I think it's justifiable to use context. But should I split my context up??
 
-  }
-
-  const handlePageChange = () => {
-
-  }
+  
 
   const filteredGuitars = guitars.filter((guitar) => {
     const guitarNameLower = guitar.guitarName.toLowerCase();
