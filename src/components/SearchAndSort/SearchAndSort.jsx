@@ -7,8 +7,8 @@ const SearchAndSort = ({handleInput, handleSortChange, handleSearch}) => {
           <button onClick={handleSearch}>Go</button>
           <label htmlFor="">Sort by: </label>
           <select onChange ={handleSortChange} name="" id="">
-            <option value="guitarPrice">Price</option>
-            <option value="guitarName">Name</option>
+            <option value="guitarPrice">Price Ascending</option>
+            <option value="guitarName">Name A-Z</option>
           </select>
         </span>
       </>

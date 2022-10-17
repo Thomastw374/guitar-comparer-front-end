@@ -43,7 +43,6 @@ const GuitarSuggestionsPage = ({
 
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
-    console.log(sortBy)
   };
 
   const handleInput = (event) => {
