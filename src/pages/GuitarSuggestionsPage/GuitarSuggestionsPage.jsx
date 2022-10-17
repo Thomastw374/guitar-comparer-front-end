@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { getGuitars } from "../../api/guitarsService";
 import GuitarSuggestionsContainer from "../../components/GuitarSuggestionsContainer/GuitarSuggestionsContainer";
 import Nav from "../../components/Nav/Nav";
 import PageNavContainer from "../../components/PageNavContainer/PageNavContainer";
 import PreviewComparisonContainer from "../../components/PreviewComparisonContainer/PreviewComparisonContainer";
 import SearchContainer from "../../components/SearchContainer/SearchContainer";
 import YourGuitarsContainer from "../../components/YourGuitarsContainer/YourGuitarsContainer";
+import GuitarsContext from "../../context/GuitarsContext";
 import "./GuitarSuggestionsPage.scss";
 
 const GuitarSuggestionsPage = ({
@@ -23,9 +25,25 @@ const GuitarSuggestionsPage = ({
 }) => {
   const [searchTerms, setSearchTerms] = useState("none");
   const [sortBy, setSortBy] = useState("guitarPrice");
+  const [guitars, setGuitars] = useState([]);
+  const { pageNum } = useContext(GuitarsContext);
+  const [numOfPages, setNumOfPages] = useState("1")
+
+  // FOR PAGE NUMS HAVE THEM BE HIGHLIGHTED IF THE CURRENT PAGENUM MATCHES THEIR PAGENUM. Using page num in two places now so I think it's justifiable to use context. But should I split my context up??
+
+  useEffect(() => {
+    handleGetGuitars(searchTerms, sortBy, pageNum);
+  }, [pageNum]);
+
+  const handleGetGuitars = async () => {
+    const guitars = await getGuitars(searchTerms, sortBy, pageNum);
+    setNumOfPages(guitars.totalPages);
+    setGuitars(guitars.content);
+  };
 
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
+    console.log(sortBy)
   };
 
   const handleInput = (event) => {
@@ -35,7 +53,6 @@ const GuitarSuggestionsPage = ({
   return (
     <div className="guitar-suggestions-page">
       <Nav />
-
       <PreviewComparisonContainer />
       <YourGuitarsContainer
         newGuitarName={newGuitarName}
@@ -51,9 +68,9 @@ const GuitarSuggestionsPage = ({
         editPressed={editPressed}
         currentUserKey={currentUserKey}
       />
-      <SearchContainer handleInput={handleInput} handleSortChange={handleSortChange} handleSearch={handleSearch} />
-      <PageNavContainer numOfPages={2} />
-      <GuitarSuggestionsContainer searchTerms={searchTerms} sortBy={sortBy} />
+      <SearchContainer handleInput={handleInput} handleSortChange={handleSortChange} handleSearch={handleGetGuitars} />
+      <PageNavContainer numOfPages={numOfPages} />
+      <GuitarSuggestionsContainer guitars={guitars}/>
     </div>
   );
 };
