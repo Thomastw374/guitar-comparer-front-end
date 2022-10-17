@@ -21,7 +21,7 @@ const GuitarSuggestionsPage = ({
   editPressed,
   currentUserKey,
 }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerms, setSearchTerms] = useState("none");
   const [sortBy, setSortBy] = useState("guitarPrice");
 
   const handleSortChange = (e) => {
@@ -29,7 +29,7 @@ const GuitarSuggestionsPage = ({
   };
 
   const handleInput = (event) => {
-    setSearchTerm(event.target.value.toLowerCase());
+    setSearchTerms(event.target.value.toLowerCase());
   };
 
   return (
@@ -51,9 +51,9 @@ const GuitarSuggestionsPage = ({
         editPressed={editPressed}
         currentUserKey={currentUserKey}
       />
-      <SearchContainer handleInput={handleInput} handleSortChange={handleSortChange} />
+      <SearchContainer handleInput={handleInput} handleSortChange={handleSortChange} handleSearch={handleSearch} />
       <PageNavContainer numOfPages={2} />
-      <GuitarSuggestionsContainer searchTerm={searchTerm} sortBy={sortBy} />
+      <GuitarSuggestionsContainer searchTerms={searchTerms} sortBy={sortBy} />
     </div>
   );
 };

@@ -1,19 +1,18 @@
 
 
-export const getGuitars = async (sortBy, pageNum) => {
-  let guitarData = [];
-  const url = `http://localhost:8080/guitars?sortBy=${sortBy}&page=${pageNum}`;
-  const res = await fetch(url);
-  guitarData = await res.json();
-  console.log(guitarData);
-  return guitarData
-};
+// export const getGuitars = async (pageNum) => {
+//   let guitarData = [];
+//   const url = `http://localhost:8080/guitars?page=${pageNum}`;
+//   const res = await fetch(url);
+//   guitarData = await res.json();
+//   return guitarData
+// };
 
-export const searchGuitars = async (searchTerms, sortBy, ascOrDesc) => {
-  let guitarData = [];
-  const url = `http://localhost:8080/search?searchTerms=guitar&orderBy=guitarPrice&ascOrDesc=desc`;
+export const getGuitars = async (searchTerms, sortBy, pageNum, ascOrDesc) => {
+  let searchedGuitars = [];
+  const url = `http://localhost:8080/search?searchTerms=${searchTerms}&orderBy=${sortBy}&ascOrDesc=asc&page=${pageNum}`;
   const res = await fetch(url);
-  guitarData = await res.json();
-  console.log(guitarData);
-  return guitarData;
-}
+  searchedGuitars = await res.json();
+  console.log(searchedGuitars);
+  return searchedGuitars;
+};

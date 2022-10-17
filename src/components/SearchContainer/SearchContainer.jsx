@@ -4,11 +4,11 @@ import GuitarsContext from "../../context/GuitarsContext";
 import SearchAndSort from "../SearchAndSort/SearchAndSort";
 import "./SearchContainer.scss";
 
-const SearchContainer = ({handleInput, handleSortChange}) => {
+const SearchContainer = ({handleInput, handleSortChange, handleSearch}) => {
 
     return (
       <div className="search-container">
-        <SearchAndSort handleInput={handleInput} handleSortChange={handleSortChange} />
+        <SearchAndSort handleInput={handleInput} handleSortChange={handleSortChange} handleSearch={handleSearch} />
         <Link to="comparison-page" className="search-container__compare-button">
           Compare Guitars
         </Link>

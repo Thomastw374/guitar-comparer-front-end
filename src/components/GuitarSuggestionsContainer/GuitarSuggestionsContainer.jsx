@@ -4,7 +4,7 @@ import "./GuitarSuggestionsContainer.scss";
 import { getGuitars, searchGuitars } from "../../api/guitarsService";
 import GuitarsContext from "../../context/GuitarsContext";
 
-const GuitarSuggestionsContainer = ({ handleGuitarClick, searchTerm, numOfPages, sortBy }) => {
+const GuitarSuggestionsContainer = ({ handleGuitarClick, searchTerms, numOfPages, sortBy }) => {
   const [guitars, setGuitars] = useState([]);
   const {pageNum} = useContext(GuitarsContext)
 
@@ -12,26 +12,18 @@ const GuitarSuggestionsContainer = ({ handleGuitarClick, searchTerm, numOfPages,
 
   // FOR PAGE NUMS HAVE THEM BE HIGHLIGHTED IF THE CURRENT PAGENUM MATCHES THEIR PAGENUM. Using page num in two places now so I think it's justifiable to use context. But should I split my context up??
 
-  searchGuitars();
-  
-
-  const filteredGuitars = guitars.filter((guitar, sortBy) => {
-    const guitarNameLower = guitar.guitarName.toLowerCase();
-    
-    return guitarNameLower.includes(searchTerm);
-  });
-
   useEffect(() => {
-    handleGetGuitars(sortBy, pageNum);
-  }, [sortBy, pageNum]);
+    handleGetGuitars(searchTerms, sortBy, pageNum);
+  }, [pageNum]);
 
-  const handleGetGuitars = async (sortBy, pageNum) => {
-    const guitars = await getGuitars(sortBy, pageNum);
-    numOfPages = guitars.totalPages
+
+  const handleGetGuitars = async (searchTerms, sortBy, pageNum) => {
+    const guitars = await getGuitars(searchTerms, sortBy, pageNum);
+    numOfPages = guitars.totalPages;
     setGuitars(guitars.content);
   };
 
-  const guitarCardsArr = filteredGuitars.map((guitar) => {
+  const guitarCardsArr = guitars.map((guitar) => {
     return (
       <>
         <GuitarSuggestionCard
