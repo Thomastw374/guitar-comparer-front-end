@@ -99,7 +99,7 @@ const GuitarSuggestionCard = ({
 
   if (isUserCard === false) {
     return (
-      <div className="guitar-card" onClick={handleGuitarClick}>
+      <div className="guitar-card" onClick={guitarPicUrl === "" ? null : handleGuitarClick}>
         {guitarPicUrl === "" ? (
           <img
             src={GenericGuitar}
