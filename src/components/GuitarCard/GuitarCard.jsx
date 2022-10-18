@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import GuitarsContext from "../../context/GuitarsContext";
 import GenericGuitar from "../../assets/generic-guitar.png";
-import "./GuitarSuggestionCard.scss";
+import "./GuitarCard.scss";
 import Button from "../Button/Button";
 
-const GuitarSuggestionCard = ({
+const GuitarCard = ({
   guitarPicUrl = "",
   guitarName = "...",
   guitarPrice = "...",
@@ -187,4 +187,4 @@ const GuitarSuggestionCard = ({
   );
 };
 
-export default GuitarSuggestionCard;
+export default GuitarCard;

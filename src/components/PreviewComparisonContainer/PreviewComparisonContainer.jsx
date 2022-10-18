@@ -1,5 +1,5 @@
 import "./PreviewComparisonContainer.scss";
-import GuitarSuggestionCard from "../GuitarSuggestionCard/GuitarSuggestionCard";
+import GuitarCard from "../GuitarCard/GuitarCard";
 import { useContext } from "react";
 import GuitarsContext from "../../context/GuitarsContext";
 
@@ -26,14 +26,14 @@ const PreviewComparisonContainer = () => {
       </p>
       <div className="preview-comparison__guitars-container">
         {guitarOne === "empty" ? (
-          <GuitarSuggestionCard
+          <GuitarCard
             isUserCard={false}
             guitarName="Guitar Name..."
             guitarDescription="Guitar Description"
             guitarPrice="Guitar Price..."
           />
         ) : (
-          <GuitarSuggestionCard
+          <GuitarCard
             isCompared={true}
             isUserCard={false}
             guitarName={guitarOne[1]}
@@ -44,14 +44,14 @@ const PreviewComparisonContainer = () => {
           />
         )}
         {guitarTwo === "empty" ? (
-          <GuitarSuggestionCard
+          <GuitarCard
             isUserCard={false}
             guitarName="Guitar Name..."
             guitarDescription="Guitar Description"
             guitarPrice="Guitar Price..."
           />
         ) : (
-          <GuitarSuggestionCard
+          <GuitarCard
             isCompared={true}
             isUserCard={false}
             guitarName={guitarTwo[1]}

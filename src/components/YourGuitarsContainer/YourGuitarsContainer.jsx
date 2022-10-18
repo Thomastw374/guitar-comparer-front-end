@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import GuitarsContext from "../../context/GuitarsContext";
 import AddGuitarCard from "../AddGuitarCard/AddGuitarCard";
-import GuitarSuggestionCard from "../GuitarSuggestionCard/GuitarSuggestionCard";
+import GuitarCard from "../GuitarCard/GuitarCard";
 import "./YourGuitarsContainer.scss";
 import {
   addUserGuitar,
@@ -99,7 +99,7 @@ const YourGuitarsContainer = ({
     guitarCardsArr = userGuitars.map((guitar) => {
       return (
         <>
-          <GuitarSuggestionCard
+          <GuitarCard
             guitarName={guitar.guitarName}
             guitarPicUrl={guitar.guitarPicUrl}
             guitarPrice={guitar.guitarPrice}

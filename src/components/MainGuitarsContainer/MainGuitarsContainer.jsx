@@ -1,16 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import GuitarSuggestionCard from "../GuitarSuggestionCard/GuitarSuggestionCard";
-import "./GuitarSuggestionsContainer.scss";
-import { getGuitars, searchGuitars } from "../../api/guitarsService";
-import GuitarsContext from "../../context/GuitarsContext";
+import GuitarCard from "../GuitarCard/GuitarCard";
+import "./MainGuitarsContainer.scss";
 
-const GuitarSuggestionsContainer = ({ handleGuitarClick, guitars }) => {
-  
-
+const MainGuitarsContainer = ({ handleGuitarClick, guitars }) => {
   const guitarCardsArr = guitars.map((guitar) => {
     return (
       <>
-        <GuitarSuggestionCard
+        <GuitarCard
           isUserCard={false}
           guitarName={guitar.guitarName}
           guitarPicUrl={guitar.guitarPicUrl}
@@ -33,4 +28,4 @@ const GuitarSuggestionsContainer = ({ handleGuitarClick, guitars }) => {
   );
 };
 
-export default GuitarSuggestionsContainer;
+export default MainGuitarsContainer;

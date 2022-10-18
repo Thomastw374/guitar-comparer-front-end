@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { getGuitars } from "../../api/guitarsService";
-import GuitarSuggestionsContainer from "../../components/GuitarSuggestionsContainer/GuitarSuggestionsContainer";
+import MainGuitarsContainer from "../../components/MainGuitarsContainer/MainGuitarsContainer";
 import Nav from "../../components/Nav/Nav";
 import PageNavContainer from "../../components/PageNavContainer/PageNavContainer";
 import PreviewComparisonContainer from "../../components/PreviewComparisonContainer/PreviewComparisonContainer";
@@ -67,9 +67,13 @@ const GuitarSuggestionsPage = ({
         editPressed={editPressed}
         currentUserKey={currentUserKey}
       />
-      <SearchContainer handleInput={handleInput} handleSortChange={handleSortChange} handleSearch={handleGetGuitars} />
+      <SearchContainer
+        handleInput={handleInput}
+        handleSortChange={handleSortChange}
+        handleSearch={handleGetGuitars}
+      />
       <PageNavContainer numOfPages={numOfPages} />
-      <GuitarSuggestionsContainer guitars={guitars}/>
+      <MainGuitarsContainer guitars={guitars} />
     </div>
   );
 };
