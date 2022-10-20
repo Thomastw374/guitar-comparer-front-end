@@ -121,6 +121,7 @@ const YourGuitarsContainer = ({
   return (
     <>
       <div className="your-guitars-section">
+        <h2 className="your-guitars-section__title">Your Guitars</h2>
         <p className="your-guitars-section__intro">
           The 'Your guitars' section is where your user submitted guitars
           appear. To retrieve a previously created guitar list enter the 32
@@ -128,18 +129,21 @@ const YourGuitarsContainer = ({
           guitar. To start a guitar list simply upload your first guitar using
           the form below.
         </p>
-        <h2 className="your-guitars-section__title">Your Guitars</h2>
         <form
           className="your-guitars-section__user-key-form"
           onSubmit={handleGetUserGuitars}
         >
-          <label htmlFor="userKey">Find list by user key: </label>
+          <label className="your-guitars-section__user-key" htmlFor="userKey">
+            Find list by user key:{" "}
+          </label>
           <input
             className="your-guitars-section__user-key-input"
             onChange={handleUserKey}
           />
           <button type="submit">Go</button>
-          <p>Current user key: {userKeyRetrieved ? currentUserKey : null}</p>
+          <p className="your-guitars-section__user-key">
+            Current user key: {userKeyRetrieved ? currentUserKey : null}
+          </p>
         </form>
         <div className="your-guitars-section__container">
           {guitarCardsArr}

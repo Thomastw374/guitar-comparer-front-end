@@ -1,7 +1,9 @@
+@use "../../styles/variables" as *;
+
 .your-guitars-section {
     width: 90vw;
   .your-guitars-section__intro{
-    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
   .your-guitars-section__container {
     display: flex;
@@ -12,6 +14,12 @@
 
   .your-guitars-section__title {
     text-align: left;
-    margin-block: 1rem;
+    margin-block: 0.7rem;
+    color: $primary-color;
+  }
+
+  .your-guitars-section__user-key{
+    margin: 0.5rem;
+    margin-bottom: 0.8rem;
   }
 }

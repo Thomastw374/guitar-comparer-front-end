@@ -1,4 +1,5 @@
 @use "../../styles/variables" as *;
+@import url('https://fonts.googleapis.com/css2?family=Jaldi&display=swap');
 
 .nav{
     display: flex;
@@ -9,7 +10,7 @@
 
     .nav__page-header{
         color: white;
-        font-family: sans-serif;
+        font-family: Jaldi;
         font-weight: bold;
         font-size: x-large;
         margin-left: 1rem;

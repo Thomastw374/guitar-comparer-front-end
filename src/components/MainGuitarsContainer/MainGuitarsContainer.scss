@@ -1,3 +1,5 @@
+@use "../../styles/variables" as *;
+
 .guitar-suggestions {
     width: 90vw;
   .guitar-suggestions__container {
@@ -10,5 +12,6 @@
   .guitar-suggestions__title {
     text-align: left;
     margin-block: 1rem;
+    color: $primary-color;
   }
 }
