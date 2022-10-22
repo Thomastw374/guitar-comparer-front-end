@@ -36,6 +36,11 @@ const GuitarComparisonPage = () => {
       <Nav />
       <div className="comparison-page">
         <ComparisonCard guitar={guitarOne} description={descriptionOne} />
+        <div className="comparison-page__vs-graphic">
+          <div className="comparison-page__line"></div>
+          <div className="comparison-page__vs">vs</div>
+          <div className="comparison-page__line comparison-page__line--small"></div>
+        </div>
         <ComparisonCard guitar={guitarTwo} description={descriptionTwo} />
       </div>
     </>

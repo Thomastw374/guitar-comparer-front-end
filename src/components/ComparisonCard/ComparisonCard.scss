@@ -5,18 +5,20 @@
   width: auto;
   padding: 1rem;
   margin: 2rem;
+  height: 90rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
   border: $primary-color solid 2px;
-  box-shadow: 0px 0px 12px 4px gray;
+  box-shadow: 0px 0px 18px 3px gray;
 
   .guitar-comparison-card__description {
     display: flex;
     flex-direction: column;
     align-items: start;
     width: 100%;
+    overflow: auto;
     * {
       padding-block: 0.1rem;
       margin-inline: 1rem;

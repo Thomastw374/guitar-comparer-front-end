@@ -1,13 +1,30 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+@use "../../styles/typography" as *;
 
 .comparison-page{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     background-color: rgb(238, 238, 238);
+
+    .comparison-page__line{
+      width: 1px;
+      height: 40rem;
+      background-color: black;
+    }
+
+    .comparison-page__vs-graphic{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: 60rem;
+    }
+
+    .comparison-page__vs{
+      font: Jaldi;
+      font-weight: bold;
+      font-size: 1.6rem;
+    }
 
     .comparison-page__guitar-container{
         width: auto;
